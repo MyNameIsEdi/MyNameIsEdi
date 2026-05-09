@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Edi Mazor — Israel-based QA engineer: WordPress &amp; Elementor testing, automation, and release-ready practices.">
+    <meta name="theme-color" content="#000000">
+    <meta property="og:title" content="Edi Mazor — QA Terminal">
+    <meta property="og:description" content="Edi Mazor — Israel-based QA engineer: WordPress &amp; Elementor testing, automation, and release-ready practices.">
+    <meta property="og:type" content="website">
+    <title>edi@qa-machine: ~</title>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Edi Mazor",
+        "jobTitle": "Quality Assurance Engineer",
+        "email": "edix@outlook.co.il",
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "IL"
+        },
+        "url": "https://www.linkedin.com/in/edi-m/",
+        "sameAs": ["https://www.linkedin.com/in/edi-m/"]
+    }
+    </script>
+
+    <style>
+        :root {
+            --term-bg: #050505;
+            --term-text: #33ff00;
+            --term-dim: #1e8f00;
+            --term-highlight: #ffffff;
+            --term-prompt-user: #00d2ff;
+            --term-prompt-path: #0055ff;
+            --term-error: #ff3333;
+            --term-warning: #ffcc00;
+            --term-pass: #00ff00;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+
+        html {
+            margin: 0;
+            min-height: 100%;
+            background-color: var(--term-bg);
+            scrollbar-color: var(--term-dim) var(--term-bg);
+        }
+
+        ::-webkit-scrollbar { width: 12px; height: 12px; }
+        ::-webkit-scrollbar-track { background: var(--term-bg); }
+        ::-webkit-scrollbar-thumb { background: var(--term-dim); }
+        ::-webkit-scrollbar-thumb:hover { background: var(--term-text); }
+
+        body.terminal-page {
+            margin: 0 auto;
+            max-width: 950px;
+            min-height: 100dvh;
+            background-color: var(--term-bg);
+            color: var(--term-text);
+            font-family: "Fira Code", "Consolas", "Courier New", Courier, monospace;
+            line-height: 1.5;
+            padding: 2rem 1.5rem 5rem 1.5rem;
+            position: relative;
+            text-shadow: 0 0 3px rgba(51, 255, 0, 0.5);
+            overflow-x: hidden;
+        }
+
+        /* CRT Scanlines & Flicker */
+        body.terminal-page::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9999;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.15) 0px,
+                rgba(0, 0, 0, 0.15) 1px,
+                transparent 1px,
+                transparent 3px
+            );
+            opacity: 0.6;
+            animation: flicker 0.15s infinite;
+        }
+
+        @keyframes flicker {
+            0% { opacity: 0.55; }
+            50% { opacity: 0.6; }
+            100% { opacity: 0.55; }
+        }
+
+        /* Glitch Effect for Headers */
+        .glitch {
+            position: relative;
+            display: inline-block;
+        }
+        .glitch::before, .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--term-bg);
+        }
+        .glitch::before {
+            left: 2px;
+            text-shadow: -1px 0 red;
+            clip: rect(24px, 550px, 90px, 0);
+            animation: glitch-anim 3s infinite linear alternate-reverse;
+        }
+        .glitch::after {
+            left: -2px;
+            text-shadow: -1px 0 blue;
+            clip: rect(85px, 550px, 140px, 0);
+            animation: glitch-anim 2.5s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim {
+            0% { clip: rect(10px, 9999px, 31px, 0); }
+            5% { clip: rect(70px, 9999px, 93px, 0); }
+            10% { clip: rect(31px, 9999px, 12px, 0); }
+            15% { clip: rect(89px, 9999px, 59px, 0); }
+            20% { clip: rect(0px, 0px, 0px, 0); } /* Hidden most of the time */
+            100% { clip: rect(0px, 0px, 0px, 0); }
+        }
+
+        ::selection { background-color: var(--term-text); color: var(--term-bg); text-shadow: none; }
+
+        /* Init Overlay */
+        #init-screen {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--term-highlight);
+            font-size: 1.2rem;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+        /* Boot Screen */
+        #boot-screen {
+            position: absolute;
+            top: 2rem;
+            left: 1.5rem;
+            right: 1.5rem;
+            z-index: 100;
+            background: var(--term-bg);
+            display: none;
+        }
+
+        #main-content { display: none; opacity: 0; transition: opacity 0.5s ease-in; }
+
+        /* Terminal Prompt Styling */
+        .prompt-line {
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .prompt-user { color: var(--term-prompt-user); font-weight: bold; }
+        .prompt-at { color: var(--term-highlight); }
+        .prompt-host { color: var(--term-prompt-user); font-weight: bold; }
+        .prompt-colon { color: var(--term-highlight); }
+        .prompt-path { color: var(--term-prompt-path); font-weight: bold; }
+        .prompt-char { color: var(--term-highlight); margin-right: 0.5rem; }
+        .prompt-cmd { color: var(--term-highlight); word-break: break-all; }
+
+        /* Interactive Input */
+        #cli-input {
+            background: transparent;
+            border: none;
+            color: var(--term-highlight);
+            font-family: inherit;
+            font-size: 1rem;
+            flex: 1;
+            min-width: 100px;
+            outline: none;
+            text-shadow: inherit;
+            caret-color: transparent; 
+        }
+
+        .term-panel { margin-bottom: 2rem; }
+
+        .output-text {
+            color: var(--term-text);
+            white-space: pre-wrap;
+            margin: 0;
+            padding-left: 0;
+        }
+
+        .term-dl {
+            display: grid;
+            grid-template-columns: max-content 1fr;
+            gap: 0.25rem 1.5rem;
+            margin: 0;
+        }
+        .term-dl dt { color: var(--term-dim); }
+        .term-dl dd { margin: 0; }
+
+        @media (max-width: 40rem) {
+            .term-dl { grid-template-columns: 1fr; gap: 0; }
+            .term-dl dt { margin-top: 0.5rem; }
+        }
+
+        a { color: var(--term-highlight); text-decoration: underline; text-decoration-color: var(--term-dim); text-underline-offset: 4px; }
+        a:hover, a:focus-visible { background-color: var(--term-text); color: var(--term-bg); text-shadow: none; text-decoration: none; }
+
+        .skill-block { margin-bottom: 1rem; }
+        .skill-block h3 { margin: 0 0 0.25rem 0; color: var(--term-highlight); font-weight: normal;}
+        .skill-block ul { list-style: none; margin: 0; padding-left: 0; }
+        .skill-block ul li::before { content: "  [PASS] "; color: var(--term-prompt-user); }
+
+        /* ASCII Art */
+        .ascii-mindmap {
+            display: block;
+            font-family: inherit;
+            overflow-x: auto;
+            white-space: pre;
+            color: var(--term-text);
+            line-height: 1.2;
+            margin: 0;
+        }
+        .c-node { color: var(--term-highlight); font-weight: bold; }
+        .c-line { color: var(--term-dim); }
+
+        @media (max-width: 48rem) { .ascii-mindmap { font-size: 0.55rem; } }
+
+        /* Command Buttons */
+        .cmd-list { display: flex; flex-direction: column; gap: 0.25rem; margin-bottom: 1rem; }
+        
+        button {
+            display: inline-block;
+            text-align: left;
+            background-color: transparent;
+            color: var(--term-text);
+            font-family: inherit;
+            font-size: 1rem;
+            cursor: pointer;
+            margin: 0;
+            padding: 0;
+            border: none;
+            text-shadow: inherit;
+            width: fit-content;
+        }
+        button::before { content: "> "; color: var(--term-dim); }
+        button:hover, button:focus-visible {
+            background-color: var(--term-text);
+            color: var(--term-bg);
+            outline: none;
+            text-shadow: none;
+        }
+        button:hover::before, button:focus-visible::before { color: var(--term-bg); }
+
+        /* Executed Script Output Styles */
+        .history-block { margin-bottom: 1rem; }
+        .cmd-output {
+            margin-top: 0.5rem;
+            padding-left: 0.5rem;
+            border-left: 2px solid var(--term-dim);
+            animation: fadeIn 0.2s ease-in;
+        }
+        .cmd-output h3 { margin: 0 0 0.5rem 0; color: var(--term-highlight); font-weight: normal; }
+        .cmd-output ul { list-style: none; padding-left: 0; margin: 0 0 0.5rem 0; }
+        .cmd-output ul li { margin-bottom: 0.35rem; }
+        .cmd-output ul li::before { content: " * "; color: var(--term-dim); }
+        .cmd-output p { margin: 0; }
+        
+        .text-dim { color: var(--term-dim); }
+        .text-error { color: var(--term-error); }
+        .text-warning { color: var(--term-warning); }
+        .text-pass { color: var(--term-pass); }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateX(-5px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Blinking Cursor */
+        .cursor-blink {
+            display: inline-block;
+            width: 8px;
+            height: 1.2em;
+            background-color: var(--term-text);
+            animation: blink 1s step-end infinite;
+            vertical-align: bottom;
+            margin-left: 2px;
+        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        /* Print Styles */
+        @page { size: A4; margin: 10mm 15mm; }
+
+        @media print {
+            body.terminal-page {
+                background-color: #fff !important; color: #222 !important; text-shadow: none !important;
+                box-shadow: none !important; padding: 0 !important; margin: 0 !important; max-width: none !important;
+                font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important; line-height: 1.3 !important; font-size: 9pt !important;
+            }
+            body.terminal-page::after { display: none !important; }
+            .no-print, .ascii-mindmap, .cursor-blink, .prompt-line, button, #execution-history, #boot-screen, #init-screen { display: none !important; }
+            #main-content { display: grid !important; opacity: 1 !important; grid-template-columns: 1fr 1.8fr; gap: 20px; align-items: start; }
+            
+            header { border-bottom: 2px solid #333; margin-bottom: 10px; padding-bottom: 5px; grid-column: 1 / -1; }
+            .print-header-title { font-size: 20pt; font-weight: bold; color: #000; display: block; }
+            .print-header-sub { font-size: 11pt; color: #555; }
+
+            .term-panel { margin-bottom: 10px; }
+            .print-h2 { font-size: 12pt; font-weight: bold; color: #000 !important; border-bottom: 1px solid #aaa; padding-bottom: 2px; margin-bottom: 8px; display: block !important; }
+            h3 { font-size: 10pt; color: #000 !important; margin-bottom: 3px; font-weight: bold; }
+            .term-dl { display: block; }
+            .term-dl dt { font-weight: bold; color: #000 !important; margin-top: 6px; }
+            .term-dl dd { margin-bottom: 4px; color: #333; }
+
+            .skill-block { margin-bottom: 8px; border: none; padding: 0; }
+            .skill-block ul li::before { content: "•"; color: #000; left: -10px; font-weight: bold; }
+            .skill-block ul li { padding-left: 5px; margin-bottom: 2px; }
+            a { color: #0056b3 !important; text-decoration: none; border: none; }
+
+            .print-only { display: block !important; }
+            .print-project-item { margin-bottom: 10px; }
+            .print-project-item h3 { font-size: 11pt; margin: 0 0 4px 0; color: #000 !important;}
+            .print-project-item ul { list-style-type: disc; padding-left: 15px; margin: 0; }
+            .print-project-item ul li { margin-bottom: 2px; padding-left: 0; }
+            .print-project-item ul li::before { display: none; }
+            .print-project-item p { margin: 4px 0 0 0; font-size: 8.5pt; font-style: italic; color: #555 !important; }
+        }
+
+        @media screen { .print-only { display: none !important; } }
+    </style>
+</head>
+<body class="terminal-page" onclick="focusInput()">
+
+    <div id="init-screen" onclick="startBootSequence()">
+        [ Click anywhere to initialize terminal connection ]
+    </div>
+
+    <div id="boot-screen" class="no-print"></div>
+
+    <header class="print-only">
+        <span class="print-header-title">Edi Mazor</span>
+        <span class="print-header-sub">Quality Assurance Engineer | Israel</span>
+    </header>
+
+    <main id="main-content">
+        <div class="print-col-left">
+            <section class="term-panel" aria-labelledby="sys-info">
+                <div class="prompt-line no-print">
+                    <span class="prompt-user">edi</span><span class="prompt-at">@</span><span class="prompt-host">qa-machine</span><span class="prompt-colon">:</span><span class="prompt-path">~</span><span class="prompt-char">$</span>
+                    <span class="prompt-cmd">cat profile.txt</span>
+                </div>
+                <h2 class="print-only print-h2 glitch" data-text="Profile">Profile</h2>
+                
+                <dl class="term-dl">
+                    <dt>Operator_ID:</dt>
+                    <dd>Edi Mazor</dd>
+                    <dt>Certification:</dt>
+                    <dd>Certified QA Tester — SVCollege</dd>
+                    <dt>Featured_Project:</dt>
+                    <dd>Omer Local Council — Municipal Website QA</dd>
+                    <dt>Core_Capabilities:</dt>
+                    <dd>Manual, Exploratory, and Automated Testing</dd>
+                    <dt>Responsibilities:</dt>
+                    <dd>Test Design, Regression Strategy, Defect Lifecycle</dd>
+                    <dt>Status:</dt>
+                    <dd>Ready for Deployment</dd>
+                </dl>
+            </section>
+
+            <section class="term-panel bios-contact" aria-labelledby="contact">
+                <div class="prompt-line no-print">
+                    <span class="prompt-user">edi</span><span class="prompt-at">@</span><span class="prompt-host">qa-machine</span><span class="prompt-colon">:</span><span class="prompt-path">~</span><span class="prompt-char">$</span>
+                    <span class="prompt-cmd">netstat -an | grep CONTACT</span>
+                </div>
+                <h2 class="print-only print-h2">Contact</h2>
+                <dl class="term-dl">
+                    <dt>Email:</dt>
+                    <dd><a href="mailto:edix@outlook.co.il?subject=Contact%20from%20portfolio">edix@outlook.co.il</a></dd>
+                    <dt>LinkedIn:</dt>
+                    <dd><a href="https://www.linkedin.com/in/edi-m/" target="_blank">linkedin.com/in/edi-m</a></dd>
+                    <dt>Location:</dt>
+                    <dd>Israel</dd>
+                </dl>
+            </section>
+        </div>
+
+        <div class="print-col-right">
+            <section class="term-panel" aria-labelledby="skills">
+                <div class="prompt-line no-print">
+                    <span class="prompt-user">edi</span><span class="prompt-at">@</span><span class="prompt-host">qa-machine</span><span class="prompt-colon">:</span><span class="prompt-path">~</span><span class="prompt-char">$</span>
+                    <span class="prompt-cmd">jest --runInBand ./skills/</span>
+                </div>
+                <h2 class="print-only print-h2">Skills &amp; Methodologies</h2>
+
+                <div class="skill-block">
+                    <h3>Industry Knowledge &amp; Methodologies</h3>
+                    <ul>
+                        <li>Deep understanding of SDLC &amp; STLC within Agile</li>
+                        <li>Test planning: requirements, scenarios, bug tracking</li>
+                        <li>Manual, black-box, smoke, and full regression testing</li>
+                    </ul>
+                </div>
+
+                <div class="skill-block">
+                    <h3>QA Automation &amp; Tooling</h3>
+                    <ul>
+                        <li>UI automation: Selenium WebDriver, Playwright, Cypress</li>
+                        <li>REST API testing and contract verification (Postman)</li>
+                        <li>Proficient with Chrome DevTools for debugging</li>
+                    </ul>
+                </div>
+
+                <div class="skill-block">
+                    <h3>Languages, CMS &amp; Environments</h3>
+                    <ul>
+                        <li>JavaScript, React.js, Python, Lua, MySQL, Linux, Git</li>
+                        <li>WordPress &amp; Elementor: layouts, templates, content</li>
+                        <li>Accessibility-oriented checks ensuring WCAG compliance</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="term-panel" aria-labelledby="mind-map">
+                <div class="prompt-line no-print">
+                    <span class="prompt-user">edi</span><span class="prompt-at">@</span><span class="prompt-host">qa-machine</span><span class="prompt-colon">:</span><span class="prompt-path">~</span><span class="prompt-char">$</span>
+                    <span class="prompt-cmd">cat architecture.map</span>
+                </div>
+                <h2 class="print-only print-h2">System Architecture</h2>
+<pre class="ascii-mindmap">
+<span class="c-node">[STRATEGY]</span> <span class="c-line">════════════════════╗         ╔═════════════════</span> <span class="c-node">[AUTOMATION]</span>
+<span class="c-line">├─</span> <span class="c-text">SDLC &amp; STLC</span>                 <span class="c-line">║         ║</span>                  <span class="c-line">├─</span> <span class="c-text">Playwright &amp; Cypress</span>
+<span class="c-line">├─</span> <span class="c-text">Exploratory Charters</span>        <span class="c-line">║         ║</span>                  <span class="c-line">├─</span> <span class="c-text">API (Postman)</span>
+<span class="c-line">└─</span> <span class="c-text">Risk-based Testing</span>          <span class="c-line">║         ║</span>                  <span class="c-line">└─</span> <span class="c-text">CI/CD Pipelines</span>
+                            <span class="c-line">╔══╩═════════╩══╗</span>
+                            <span class="c-line">║    <span class="c-core">QA CORE</span>    ║</span>
+                            <span class="c-line">╚══╦═════════╦══╝</span>
+<span class="c-node">[WEB &amp; CMS]</span> <span class="c-line">═══════════════════╝         ╚═══════════════════</span> <span class="c-node">[DELIVERY]</span>
+<span class="c-line">├─</span> <span class="c-text">WordPress / Elementor</span>                                      <span class="c-line">├─</span> <span class="c-text">Jira / Azure DevOps</span>
+<span class="c-line">├─</span> <span class="c-text">A11y (WCAG 2.2)</span>                                            <span class="c-line">├─</span> <span class="c-text">Shift-Left Security</span>
+<span class="c-line">└─</span> <span class="c-text">Cross-Browser/Mobile</span>                                       <span class="c-line">└─</span> <span class="c-text">Release Readiness</span>
+</pre>
+            </section>
+
+            <section class="term-panel" aria-labelledby="projects">
+                <div class="prompt-line no-print">
+                    <span class="prompt-user">edi</span><span class="prompt-at">@</span><span class="prompt-host">qa-machine</span><span class="prompt-colon">:</span><span class="prompt-path">~/projects</span><span class="prompt-char">$</span>
+                    <span class="prompt-cmd">ls -x (Hint: Use 'Tab' to autocomplete, ↑/↓ for history)</span>
+                </div>
+                <h2 class="print-only print-h2">Executable Projects</h2>
+                
+                <div class="cmd-list no-print" id="clickable-commands">
+                    <button type="button" onclick="typeAndExecute('./run_omer_municipal_qa.sh')">./run_omer_municipal_qa.sh</button>
+                    <button type="button" onclick="typeAndExecute('./run_regression_stabilizer.sh')">./run_regression_stabilizer.sh</button>
+                    <button type="button" onclick="typeAndExecute('./run_api_contract_guard.sh')">./run_api_contract_guard.sh</button>
+                    <button type="button" onclick="typeAndExecute('./run_exploratory_charter.sh')">./run_exploratory_charter.sh</button>
+                    <button type="button" onclick="typeAndExecute('run_tests')">run_tests (System QA Scan)</button>
+                    <button type="button" onclick="typeAndExecute('print')">print (Export to PDF)</button>
+                    <button type="button" onclick="typeAndExecute('help')">help (Show available commands)</button>
+                </div>
+
+                <div class="print-only">
+                    <div class="print-project-item">
+                        <h3>Omer Local Council — Municipal Website QA</h3>
+                        <ul>
+                            <li><strong>Context:</strong> QA for the local authority’s public website (WordPress + Elementor).</li>
+                            <li><strong>Work:</strong> E2E testing, defect discovery, and rigorous regression checks.</li>
+                            <li><strong>Outcome:</strong> Clear bug reports leading to a more stable citizen experience.</li>
+                        </ul>
+                    </div>
+                    <div class="print-project-item">
+                        <h3>Regression Suite Stabilization</h3>
+                        <ul>
+                            <li><strong>Problem:</strong> Flaky UI checks and extended runtimes reduced confidence before merges.</li>
+                            <li><strong>Approach:</strong> Audited selectors/waits; separated fast smoke tests from full regression suites.</li>
+                            <li><strong>Outcome:</strong> Accelerated feedback loops, reduced false negatives, and restored trust.</li>
+                        </ul>
+                    </div>
+                    <div class="print-project-item">
+                        <h3>API Contract &amp; Negative-Path Coverage</h3>
+                        <ul>
+                            <li><strong>Problem:</strong> Unnoticed service changes caused silent failures; testing was limited to happy paths.</li>
+                            <li><strong>Approach:</strong> Developed focused tests for status codes, validation errors, and schema integrity.</li>
+                            <li><strong>Outcome:</strong> Early detection of breaking changes and improved defect clarity.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <div id="execution-history" class="no-print"></div>
+
+            <div id="active-prompt-container" class="prompt-line no-print" style="display:none;">
+                <span class="prompt-user">edi</span><span class="prompt-at">@</span><span class="prompt-host">qa-machine</span><span class="prompt-colon">:</span><span class="prompt-path">~/projects</span><span class="prompt-char">$</span>
+                <input type="text" id="cli-input" autocomplete="off" spellcheck="false" aria-label="Terminal input">
+                <span class="cursor-blink"></span>
+            </div>
+            
+        </div>
+    </main>
+
+    <script>
+        // Audio Setup
+        let audioCtx;
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if(audioCtx.state === 'suspended') audioCtx.resume();
+        }
+        
+        function playTypingSound() {
+            if(!audioCtx) return;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'square';
+            osc.frequency.setValueAtTime(800 + Math.random() * 200, audioCtx.currentTime);
+            gain.gain.setValueAtTime(0.005, audioCtx.currentTime); 
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.02);
+        }
+
+        function playExecuteSound() {
+            if(!audioCtx) return;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(400, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(800, audioCtx.currentTime + 0.1);
+            gain.gain.setValueAtTime(0.02, audioCtx.currentTime); 
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.1);
+        }
+
+        function playPassSound() {
+            if(!audioCtx) return;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(1200, audioCtx.currentTime);
+            osc.frequency.setValueAtTime(1600, audioCtx.currentTime + 0.1);
+            gain.gain.setValueAtTime(0.01, audioCtx.currentTime); 
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.2);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.2);
+        }
+
+        // Available Commands for Autocomplete
+        const availableCommands = [
+            './run_omer_municipal_qa.sh',
+            './run_regression_stabilizer.sh',
+            './run_api_contract_guard.sh',
+            './run_exploratory_charter.sh',
+            'help', 'clear', 'print', 'whoami', 'sudo', 'run_tests'
+        ];
+
+        const commandResponses = {
+            './run_omer_municipal_qa.sh': `<h3>Omer Local Council — Municipal Website QA</h3>
+                        <ul>
+                            <li><strong>Context:</strong> QA for the local authority’s public-facing website, built on WordPress and Elementor.</li>
+                            <li><strong>Work:</strong> End-to-end testing, defect discovery and verification, and rigorous regression checks.</li>
+                            <li><strong>Outcome:</strong> Delivered clear, actionable bug reports leading to a more stable, user-friendly experience.</li>
+                        </ul>
+                        <p class="text-dim"># Stack: WordPress, Elementor, Browser DevTools, Cross-browser testing.</p>`,
+            './run_regression_stabilizer.sh': `<h3>Regression Suite Stabilization</h3>
+                        <ul>
+                            <li><strong>Problem:</strong> Flaky UI checks and extended runtimes reduced team confidence before merges.</li>
+                            <li><strong>Approach:</strong> Audited selectors and waits; separated fast smoke tests from full regression suites.</li>
+                            <li><strong>Outcome:</strong> Accelerated feedback loops, reduced false negatives, and restored trust in the deployment gate.</li>
+                        </ul>
+                        <p class="text-dim"># Stack: Playwright/Selenium, CI Pipelines, Jira/Azure DevOps.</p>`,
+            './run_api_contract_guard.sh': `<h3>API Contract &amp; Negative-Path Coverage</h3>
+                        <ul>
+                            <li><strong>Problem:</strong> Unnoticed service changes caused silent failures; testing was limited to happy paths.</li>
+                            <li><strong>Approach:</strong> Developed focused tests for status codes, validation errors, and schema integrity.</li>
+                            <li><strong>Outcome:</strong> Enabled early detection of breaking changes and improved defect clarity.</li>
+                        </ul>
+                        <p class="text-dim"># Stack: Postman/Newman, JSON Schema, Git.</p>`,
+            './run_exploratory_charter.sh': `<h3>Pre-Release Exploratory Charter</h3>
+                        <ul>
+                            <li><strong>Context:</strong> A major release facing a tight timeline and dynamic scope changes.</li>
+                            <li><strong>Approach:</strong> Conducted time-boxed exploratory sessions targeting high-risk user journeys.</li>
+                            <li><strong>Outcome:</strong> Identified critical issues prior to launch, providing explicit quality signals.</li>
+                        </ul>
+                        <p class="text-dim"># Stack: Session-based testing, Screen capture, Defect tracking systems.</p>`,
+            'help': `<p>Available commands:</p>
+                     <ul>
+                        <li><span class="text-highlight">./run_omer_municipal_qa.sh</span> - Execute Omer Council project</li>
+                        <li><span class="text-highlight">./run_regression_stabilizer.sh</span> - Execute Regression project</li>
+                        <li><span class="text-highlight">./run_api_contract_guard.sh</span> - Execute API project</li>
+                        <li><span class="text-highlight">./run_exploratory_charter.sh</span> - Execute Exploratory project</li>
+                        <li><span class="text-highlight">run_tests</span> - Execute QA system scan</li>
+                        <li><span class="text-highlight">clear</span> - Clear terminal history</li>
+                        <li><span class="text-highlight">print</span> - Export portfolio to PDF</li>
+                        <li><span class="text-highlight">whoami</span> - Display current user info</li>
+                     </ul>`,
+            'whoami': `<p>Edi Mazor<br>Quality Assurance Engineer<br>Passionate about breaking things systematically so they work flawlessly in production.</p>`,
+            'sudo': `<p class="text-error">edi is not in the sudoers file. This incident will be reported.</p>`,
+            'clear': 'CLEAR_CMD',
+            'run_tests': 'RUN_TESTS_CMD'
+        };
+
+        const cliInput = document.getElementById('cli-input');
+        const historyDiv = document.getElementById('execution-history');
+        
+        let isExecuting = false;
+        let commandHistory = [];
+        let historyIndex = -1;
+
+        // Boot Sequence Logic
+        async function startBootSequence() {
+            document.getElementById('init-screen').style.display = 'none';
+            initAudio();
+            
+            const bootScreen = document.getElementById('boot-screen');
+            const mainContent = document.getElementById('main-content');
+            const activePrompt = document.getElementById('active-prompt-container');
+            
+            bootScreen.style.display = 'block';
+
+            const bootLogs = [
+                { text: "Initializing QA environment v2.4.1...", delay: 200 },
+                { text: "Mounting filesystems... [OK]", delay: 100 },
+                { text: "Starting API interceptors... [OK]", delay: 150 },
+                { text: "Loading regression suites... ", delay: 400, progress: true },
+                { text: "Executing user session: edi@qa-machine", delay: 200 }
+            ];
+
+            for (let log of bootLogs) {
+                const p = document.createElement('p');
+                p.className = 'output-text';
+                
+                if(log.progress) {
+                    bootScreen.appendChild(p);
+                    let bar = "[";
+                    for(let i=0; i<=20; i++) {
+                        bar += (i < 10) ? "#" : ".";
+                        p.textContent = log.text + bar + "] " + (i*5) + "%";
+                        playTypingSound();
+                        await new Promise(r => setTimeout(r, 20));
+                    }
+                    p.textContent = log.text + "[####################] 100% [PASS]";
+                    playPassSound();
+                } else {
+                    p.textContent = log.text;
+                    bootScreen.appendChild(p);
+                    playTypingSound();
+                }
+                await new Promise(r => setTimeout(r, log.delay));
+            }
+
+            await new Promise(r => setTimeout(r, 400));
+            bootScreen.style.display = 'none';
+            mainContent.style.display = 'block';
+            
+            setTimeout(() => {
+                mainContent.style.opacity = 1;
+                activePrompt.style.display = 'flex';
+                cliInput.focus();
+            }, 50);
+        }
+
+        // Typing wrapper for button clicks
+        async function typeAndExecute(cmdStr) {
+            if (isExecuting) return;
+            isExecuting = true;
+            cliInput.value = '';
+            cliInput.disabled = true;
+
+            for (let i = 0; i < cmdStr.length; i++) {
+                cliInput.value += cmdStr[i];
+                playTypingSound();
+                await new Promise(r => setTimeout(r, 20 + Math.random() * 30));
+            }
+            
+            await new Promise(r => setTimeout(r, 150));
+            await executeCommand(cmdStr);
+        }
+
+        // CLI Input Handlers (Enter, Up, Down, Tab)
+        cliInput.addEventListener('keydown', async function(e) {
+            if (e.key !== 'Enter' && e.key !== 'Tab') playTypingSound();
+            
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                const cmd = this.value.trim();
+                if (cmd) {
+                    commandHistory.push(cmd);
+                    historyIndex = commandHistory.length;
+                }
+                if (cmd && !isExecuting) {
+                    isExecuting = true;
+                    this.disabled = true;
+                    await executeCommand(cmd);
+                } else if (!cmd) {
+                    // Empty enter, just new line
+                    appendPromptToHistory("");
+                    window.scrollTo(0, document.body.scrollHeight);
+                }
+            } 
+            else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                if (historyIndex > 0) {
+                    historyIndex--;
+                    this.value = commandHistory[historyIndex];
+                }
+            } 
+            else if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                if (historyIndex < commandHistory.length - 1) {
+                    historyIndex++;
+                    this.value = commandHistory[historyIndex];
+                } else {
+                    historyIndex = commandHistory.length;
+                    this.value = '';
+                }
+            }
+            else if (e.key === 'Tab') {
+                e.preventDefault();
+                const currentVal = this.value;
+                const matches = availableCommands.filter(c => c.startsWith(currentVal));
+                
+                if (matches.length === 1) {
+                    this.value = matches[0];
+                } else if (matches.length > 1) {
+                    // Print matches to history
+                    appendPromptToHistory(currentVal);
+                    const matchDiv = document.createElement('div');
+                    matchDiv.className = 'cmd-output text-highlight';
+                    matchDiv.textContent = matches.join('    ');
+                    historyDiv.appendChild(matchDiv);
+                    window.scrollTo(0, document.body.scrollHeight);
+                }
+            }
+        });
+
+        function focusInput() {
+            if (window.getSelection().toString() === '') {
+                cliInput.focus();
+            }
+        }
+
+        function appendPromptToHistory(cmd) {
+            const historyBlock = document.createElement('div');
+            historyBlock.className = 'history-block';
+            historyBlock.style.marginBottom = '0';
+            
+            const promptLine = document.createElement('div');
+            promptLine.className = 'prompt-line';
+            promptLine.innerHTML = `<span class="prompt-user">edi</span><span class="prompt-at">@</span><span class="prompt-host">qa-machine</span><span class="prompt-colon">:</span><span class="prompt-path">~/projects</span><span class="prompt-char">$</span> <span class="prompt-cmd">${cmd}</span>`;
+            historyBlock.appendChild(promptLine);
+            historyDiv.appendChild(historyBlock);
+            return historyBlock;
+        }
+
+        // Core execution logic
+        async function executeCommand(cmd) {
+            playExecuteSound();
+            const historyBlock = appendPromptToHistory(cmd);
+            historyBlock.style.marginBottom = '1rem';
+            
+            if (cmd === 'print') {
+                const out = document.createElement('div');
+                out.className = 'cmd-output';
+                out.innerHTML = `<p class="text-dim">Preparing PDF generation...</p>`;
+                historyBlock.appendChild(out);
+                setTimeout(() => window.print(), 800);
+            } 
+            else if (commandResponses[cmd] === 'CLEAR_CMD') {
+                historyDiv.innerHTML = '';
+            }
+            else if (commandResponses[cmd] === 'RUN_TESTS_CMD') {
+                // QA specific easter egg animation
+                const out = document.createElement('div');
+                out.className = 'cmd-output';
+                historyBlock.appendChild(out);
+                
+                const tests = [
+                    "Checking cross-browser compatibility... [PASS]",
+                    "Validating API response schemas... [PASS]",
+                    "Running accessibility audit (WCAG 2.2)... [PASS]",
+                    "Executing E2E Playwright flows... [PASS]"
+                ];
+                
+                for(let t of tests) {
+                    out.innerHTML += `<p class="text-dim">${t}</p>`;
+                    playTypingSound();
+                    window.scrollTo(0, document.body.scrollHeight);
+                    await new Promise(r => setTimeout(r, 300));
+                }
+                playPassSound();
+                out.innerHTML += `<br><p class="text-pass"><b>Test Suites: 4 passed, 0 failed, 4 total</b></p><p class="text-pass"><b>Vulnerabilities: 0 found</b></p>`;
+            }
+            else if (commandResponses[cmd]) {
+                const out = document.createElement('div');
+                out.className = 'cmd-output';
+                out.innerHTML = commandResponses[cmd];
+                historyBlock.appendChild(out);
+            } 
+            else {
+                const out = document.createElement('div');
+                out.className = 'cmd-output';
+                out.innerHTML = `<p class="text-error">bash: ${cmd}: command not found</p><p class="text-dim">Type 'help' to see available commands.</p>`;
+                historyBlock.appendChild(out);
+            }
+
+            await new Promise(r => setTimeout(r, 100));
+            window.scrollTo(0, document.body.scrollHeight);
+            resetInput();
+        }
+
+        function resetInput() {
+            cliInput.value = '';
+            cliInput.disabled = false;
+            cliInput.focus();
+            isExecuting = false;
+        }
+
+        // Button navigation fallback
+        document.addEventListener('keydown', (e) => {
+            if(document.activeElement === cliInput) return;
+            const buttons = Array.from(document.querySelectorAll('button')).filter(b => b.offsetParent !== null);
+            if (buttons.length === 0 || isExecuting) return;
+
+            const currentIndex = buttons.indexOf(document.activeElement);
+
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                const nextIndex = currentIndex === -1 ? 0 : (currentIndex + 1) % buttons.length;
+                buttons[nextIndex].focus();
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                const prevIndex = currentIndex <= 0 ? buttons.length - 1 : currentIndex - 1;
+                buttons[prevIndex].focus();
+            }
+        });
+    </script>
+</body>
+</html>
