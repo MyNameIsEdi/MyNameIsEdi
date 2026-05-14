@@ -13,7 +13,7 @@
 ## 🖥️ Featured Project: Interactive Terminal Portfolio
 בניתי פורטפוליו אינטראקטיבי בסגנון טרמינל רטרו (CRT). הוא כולל פקודות CLI, אפקטים קוליים וסריקת מערכת.
 
-### [🚀 לחצו כאן לצפייה בגרסה החיה (Live Demo)](https://github.com/MyNameIsEdi/EdiPortfolio/blob/main/protfolio.html)
+### [🚀 לחצו כאן לצפייה בגרסה החיה (Live Demo)](https://github.com/MyNameIsEdi/EdiPortfolio.git)
 
 <p align="center">
   <img src="https://github.com/MyNameIsEdi/EdiPortfolio/blob/main/preview.jpeg" alt="Terminal Portfolio Preview" width="800">
