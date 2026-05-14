@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Edi Mazor — Israel-based Web Developer & QA Engineer: Web Applications, Automation, and AI.">
-    <meta name="theme-color" content="#000000">
+    <meta name="theme-color" content="#050505">
     <meta property="og:title" content="Edi Mazor — Terminal Resume">
     <meta property="og:description" content="Edi Mazor — Israel-based Web Developer & QA Engineer: Web Applications, Automation, and AI.">
     <meta property="og:type" content="website">
@@ -47,23 +47,25 @@
             scrollbar-color: var(--term-dim) var(--term-bg);
         }
 
-        ::-webkit-scrollbar { width: 12px; height: 12px; }
+        ::-webkit-scrollbar { width: 10px; height: 10px; }
         ::-webkit-scrollbar-track { background: var(--term-bg); }
-        ::-webkit-scrollbar-thumb { background: var(--term-dim); }
+        ::-webkit-scrollbar-thumb { background: var(--term-dim); border-radius: 5px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--term-text); }
 
         body.terminal-page {
             margin: 0 auto;
-            max-width: 950px;
+            max-width: 1000px;
             min-height: 100dvh;
             background-color: var(--term-bg);
             color: var(--term-text);
             font-family: "Fira Code", "Consolas", "Courier New", Courier, monospace;
-            line-height: 1.5;
+            line-height: 1.6;
             padding: 2rem 1.5rem 5rem 1.5rem;
             position: relative;
-            text-shadow: 0 0 3px rgba(51, 255, 0, 0.5);
+            text-shadow: 0 0 4px rgba(51, 255, 0, 0.4);
             overflow-x: hidden;
+            /* Subtly simulates screen curvature */
+            box-shadow: inset 0 0 100px rgba(0,0,0,0.9);
         }
 
         /* CRT Scanlines & Flicker */
@@ -106,13 +108,13 @@
         }
         .glitch::before {
             left: 2px;
-            text-shadow: -1px 0 red;
+            text-shadow: -2px 0 red;
             clip: rect(24px, 550px, 90px, 0);
             animation: glitch-anim 3s infinite linear alternate-reverse;
         }
         .glitch::after {
             left: -2px;
-            text-shadow: -1px 0 blue;
+            text-shadow: -2px 0 blue;
             clip: rect(85px, 550px, 140px, 0);
             animation: glitch-anim 2.5s infinite linear alternate-reverse;
         }
@@ -122,7 +124,7 @@
             5% { clip: rect(70px, 9999px, 93px, 0); }
             10% { clip: rect(31px, 9999px, 12px, 0); }
             15% { clip: rect(89px, 9999px, 59px, 0); }
-            20% { clip: rect(0px, 0px, 0px, 0); } /* Hidden most of the time */
+            20% { clip: rect(0px, 0px, 0px, 0); }
             100% { clip: rect(0px, 0px, 0px, 0); }
         }
 
@@ -170,7 +172,7 @@
         .prompt-host { color: var(--term-prompt-user); font-weight: bold; }
         .prompt-colon { color: var(--term-highlight); }
         .prompt-path { color: var(--term-prompt-path); font-weight: bold; }
-        .prompt-char { color: var(--term-highlight); margin-right: 0.5rem; }
+        .prompt-char { color: var(--term-highlight); margin-right: 0.5rem; margin-left: 2px;}
         .prompt-cmd { color: var(--term-highlight); word-break: break-all; }
 
         /* Interactive Input */
@@ -187,7 +189,7 @@
             caret-color: transparent; 
         }
 
-        .term-panel { margin-bottom: 2rem; }
+        .term-panel { margin-bottom: 2.5rem; }
 
         .output-text {
             color: var(--term-text);
@@ -207,16 +209,16 @@
 
         @media (max-width: 40rem) {
             .term-dl { grid-template-columns: 1fr; gap: 0; }
-            .term-dl dt { margin-top: 0.5rem; }
+            .term-dl dt { margin-top: 0.8rem; }
         }
 
-        a { color: var(--term-highlight); text-decoration: underline; text-decoration-color: var(--term-dim); text-underline-offset: 4px; }
+        a { color: var(--term-highlight); text-decoration: underline; text-decoration-color: var(--term-dim); text-underline-offset: 4px; transition: 0.2s; }
         a:hover, a:focus-visible { background-color: var(--term-text); color: var(--term-bg); text-shadow: none; text-decoration: none; }
 
-        .skill-block { margin-bottom: 1rem; }
-        .skill-block h3 { margin: 0 0 0.25rem 0; color: var(--term-highlight); font-weight: normal;}
-        .skill-block ul { list-style: none; margin: 0; padding-left: 0; }
-        .skill-block ul li::before { content: "  [PASS] "; color: var(--term-prompt-user); }
+        .skill-block { margin-bottom: 1.5rem; }
+        .skill-block h3 { margin: 0 0 0.5rem 0; color: var(--term-highlight); font-weight: normal;}
+        .skill-block ul { list-style: none; margin: 0; padding-left: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.5rem; }
+        .skill-block ul li::before { content: "[PASS] "; color: var(--term-prompt-user); }
 
         /* ASCII Art */
         .ascii-mindmap {
@@ -234,7 +236,7 @@
         @media (max-width: 48rem) { .ascii-mindmap { font-size: 0.55rem; } }
 
         /* Command Buttons */
-        .cmd-list { display: flex; flex-direction: column; gap: 0.25rem; margin-bottom: 1rem; }
+        .cmd-list { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
         
         button {
             display: inline-block;
@@ -245,32 +247,31 @@
             font-size: 1rem;
             cursor: pointer;
             margin: 0;
-            padding: 0;
-            border: none;
+            padding: 2px 5px;
+            border: 1px solid transparent;
             text-shadow: inherit;
             width: fit-content;
+            transition: all 0.2s ease;
         }
-        button::before { content: "> "; color: var(--term-dim); }
+        button::before { content: "$ "; color: var(--term-dim); }
         button:hover, button:focus-visible {
-            background-color: var(--term-text);
-            color: var(--term-bg);
+            background-color: rgba(51, 255, 0, 0.1);
+            border: 1px solid var(--term-dim);
             outline: none;
-            text-shadow: none;
         }
-        button:hover::before, button:focus-visible::before { color: var(--term-bg); }
 
         /* Executed Script Output Styles */
         .history-block { margin-bottom: 1rem; }
         .cmd-output {
             margin-top: 0.5rem;
-            padding-left: 0.5rem;
+            padding-left: 1rem;
             border-left: 2px solid var(--term-dim);
             animation: fadeIn 0.2s ease-in;
         }
         .cmd-output h3 { margin: 0 0 0.5rem 0; color: var(--term-highlight); font-weight: normal; }
         .cmd-output ul { list-style: none; padding-left: 0; margin: 0 0 0.5rem 0; }
         .cmd-output ul li { margin-bottom: 0.35rem; }
-        .cmd-output ul li::before { content: " * "; color: var(--term-dim); }
+        .cmd-output ul li::before { content: "> "; color: var(--term-dim); }
         .cmd-output p { margin: 0; }
         
         .text-dim { color: var(--term-dim); }
@@ -286,14 +287,22 @@
         /* Blinking Cursor */
         .cursor-blink {
             display: inline-block;
-            width: 8px;
+            width: 10px;
             height: 1.2em;
             background-color: var(--term-text);
             animation: blink 1s step-end infinite;
             vertical-align: bottom;
             margin-left: 2px;
+            box-shadow: 0 0 5px var(--term-text);
         }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        /* Accessibility: Reduce Motion */
+        @media (prefers-reduced-motion: reduce) {
+            body.terminal-page::after { animation: none; opacity: 0.1; }
+            .glitch::before, .glitch::after { animation: none; display: none; }
+            .cursor-blink { animation: none; opacity: 1; }
+        }
 
         /* Print Styles */
         @page { size: A4; margin: 10mm 15mm; }
@@ -320,8 +329,9 @@
             .term-dl dd { margin-bottom: 4px; color: #333; }
 
             .skill-block { margin-bottom: 8px; border: none; padding: 0; }
-            .skill-block ul li::before { content: "•"; color: #000; left: -10px; font-weight: bold; }
-            .skill-block ul li { padding-left: 5px; margin-bottom: 2px; }
+            .skill-block ul { display: block; }
+            .skill-block ul li::before { content: "• "; color: #000; font-weight: bold; }
+            .skill-block ul li { margin-bottom: 2px; }
             a { color: #0056b3 !important; text-decoration: none; border: none; }
 
             .print-only { display: block !important; }
@@ -336,7 +346,7 @@
         @media screen { .print-only { display: none !important; } }
     </style>
 </head>
-<body class="terminal-page" onclick="focusInput()">
+<body class="terminal-page">
 
     <div id="init-screen" onclick="startBootSequence()">
         [ Click anywhere to initialize terminal connection ]
@@ -444,14 +454,14 @@
 <span class="c-node">[TOOLS &amp; ENV]</span> <span class="c-line">═══════════════════╝         ╚═══════════════════</span> <span class="c-node">[AI &amp; OPS]</span>
 <span class="c-line">├─</span> <span class="c-text">Git / Linux / SQL</span>                                            <span class="c-line">├─</span> <span class="c-text">AI Tools Integration</span>
 <span class="c-line">├─</span> <span class="c-text">Chrome DevTools</span>                                              <span class="c-line">├─</span> <span class="c-text">Jira</span>
-<span class="c-line">└─</span> <span class="c-text">Creative Troubleshooting</span>                                     <span class="c-line">└─</span> <span class="c-text">Project Management</span>
+<span class="c-line">└─</span> <span class="c-text">Creative Troubleshooting</span>                                       <span class="c-line">└─</span> <span class="c-text">Project Management</span>
 </pre>
             </section>
 
             <section class="term-panel" aria-labelledby="projects">
                 <div class="prompt-line no-print">
                     <span class="prompt-user">edi</span><span class="prompt-at">@</span><span class="prompt-host">qa-machine</span><span class="prompt-colon">:</span><span class="prompt-path">~/experience</span><span class="prompt-char">$</span>
-                    <span class="prompt-cmd">ls -x (Hint: Use 'Tab' to autocomplete, ↑/↓ for history)</span>
+                    <span class="prompt-cmd">ls -x (Hint: Use 'Tab', ↑/↓ arrows, or click commands)</span>
                 </div>
                 <h2 class="print-only print-h2">Professional Experience</h2>
                 
@@ -459,9 +469,9 @@
                     <button type="button" onclick="typeAndExecute('./run_edix_company.sh')">./run_edix_company.sh</button>
                     <button type="button" onclick="typeAndExecute('./run_sightbit_qa.sh')">./run_sightbit_qa.sh</button>
                     <button type="button" onclick="typeAndExecute('./run_military_service.sh')">./run_military_service.sh</button>
-                    <button type="button" onclick="typeAndExecute('run_tests')">run_tests (System Scan)</button>
-                    <button type="button" onclick="typeAndExecute('print')">print (Export to PDF)</button>
-                    <button type="button" onclick="typeAndExecute('help')">help (Show available commands)</button>
+                    <button type="button" onclick="typeAndExecute('run_tests')">run_tests <span class="text-dim">(System Scan)</span></button>
+                    <button type="button" onclick="typeAndExecute('print')">print <span class="text-dim">(Export to PDF)</span></button>
+                    <button type="button" onclick="typeAndExecute('help')">help <span class="text-dim">(Show available commands)</span></button>
                 </div>
 
                 <div class="print-only">
@@ -491,11 +501,11 @@
                 </div>
             </section>
             
-            <div id="execution-history" class="no-print"></div>
+            <div id="execution-history" class="no-print" aria-live="polite"></div>
 
             <div id="active-prompt-container" class="prompt-line no-print" style="display:none;">
                 <span class="prompt-user">edi</span><span class="prompt-at">@</span><span class="prompt-host">qa-machine</span><span class="prompt-colon">:</span><span class="prompt-path">~/experience</span><span class="prompt-char">$</span>
-                <input type="text" id="cli-input" autocomplete="off" spellcheck="false" aria-label="Terminal input">
+                <input type="text" id="cli-input" autocomplete="off" spellcheck="false" aria-label="Terminal command input">
                 <span class="cursor-blink"></span>
             </div>
             
@@ -560,7 +570,7 @@
             './run_edix_company.sh',
             './run_sightbit_qa.sh',
             './run_military_service.sh',
-            'help', 'clear', 'print', 'whoami', 'sudo', 'run_tests'
+            'help', 'clear', 'print', 'whoami', 'sudo', 'run_tests', 'date', 'echo'
         ];
 
         const commandResponses = {
@@ -592,9 +602,11 @@
                         <li><span class="text-highlight">clear</span> - Clear terminal history</li>
                         <li><span class="text-highlight">print</span> - Export resume to PDF</li>
                         <li><span class="text-highlight">whoami</span> - Display current user info</li>
+                        <li><span class="text-highlight">date</span> - Display system date</li>
                      </ul>`,
             'whoami': `<p>Edi Mazor<br>Web Developer & Quality Assurance Engineer<br>Passionate about building robust systems and breaking them systematically to ensure flawless production.</p>`,
-            'sudo': `<p class="text-error">edi is not in the sudoers file. This incident will be reported.</p>`,
+            'sudo': `<p class="text-error">edi is not in the sudoers file. This incident will be reported to the cyber police.</p>`,
+            'date': `<p>${new Date().toString()}</p>`,
             'clear': 'CLEAR_CMD',
             'run_tests': 'RUN_TESTS_CMD'
         };
@@ -605,6 +617,20 @@
         let isExecuting = false;
         let commandHistory = [];
         let historyIndex = -1;
+
+        // Auto-focus input when clicking or typing anywhere
+        document.addEventListener('click', () => {
+            if (window.getSelection().toString() === '') {
+                cliInput.focus();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            // Auto focus if a printable character is typed and no modifier keys are held
+            if (document.activeElement !== cliInput && !e.ctrlKey && !e.metaKey && !e.altKey && e.key.length === 1) {
+                cliInput.focus();
+            }
+        });
 
         // Boot Sequence Logic
         async function startBootSequence() {
@@ -678,7 +704,9 @@
 
         // CLI Input Handlers (Enter, Up, Down, Tab)
         cliInput.addEventListener('keydown', async function(e) {
-            if (e.key !== 'Enter' && e.key !== 'Tab') playTypingSound();
+            if (e.key !== 'Enter' && e.key !== 'Tab' && e.key !== 'ArrowUp' && e.key !== 'ArrowDown') {
+                playTypingSound();
+            }
             
             if (e.key === 'Enter') {
                 e.preventDefault();
@@ -716,13 +744,12 @@
             }
             else if (e.key === 'Tab') {
                 e.preventDefault();
-                const currentVal = this.value;
-                const matches = availableCommands.filter(c => c.startsWith(currentVal));
+                const currentVal = this.value.toLowerCase();
+                const matches = availableCommands.filter(c => c.toLowerCase().startsWith(currentVal));
                 
                 if (matches.length === 1) {
                     this.value = matches[0];
                 } else if (matches.length > 1) {
-                    // Print matches to history
                     appendPromptToHistory(currentVal);
                     const matchDiv = document.createElement('div');
                     matchDiv.className = 'cmd-output text-highlight';
@@ -732,12 +759,6 @@
                 }
             }
         });
-
-        function focusInput() {
-            if (window.getSelection().toString() === '') {
-                cliInput.focus();
-            }
-        }
 
         function appendPromptToHistory(cmd) {
             const historyBlock = document.createElement('div');
@@ -758,7 +779,15 @@
             const historyBlock = appendPromptToHistory(cmd);
             historyBlock.style.marginBottom = '1rem';
             
-            if (cmd === 'print') {
+            // Handle 'echo' command dynamic input
+            if (cmd.startsWith('echo ')) {
+                const textToEcho = cmd.replace('echo ', '');
+                const out = document.createElement('div');
+                out.className = 'cmd-output';
+                out.innerHTML = `<p>${textToEcho}</p>`;
+                historyBlock.appendChild(out);
+            }
+            else if (cmd === 'print') {
                 const out = document.createElement('div');
                 out.className = 'cmd-output';
                 out.innerHTML = `<p class="text-dim">Preparing PDF generation...</p>`;
@@ -769,7 +798,6 @@
                 historyDiv.innerHTML = '';
             }
             else if (commandResponses[cmd] === 'RUN_TESTS_CMD') {
-                // QA specific easter egg animation
                 const out = document.createElement('div');
                 out.className = 'cmd-output';
                 historyBlock.appendChild(out);
@@ -814,25 +842,6 @@
             cliInput.focus();
             isExecuting = false;
         }
-
-        // Button navigation fallback
-        document.addEventListener('keydown', (e) => {
-            if(document.activeElement === cliInput) return;
-            const buttons = Array.from(document.querySelectorAll('button')).filter(b => b.offsetParent !== null);
-            if (buttons.length === 0 || isExecuting) return;
-
-            const currentIndex = buttons.indexOf(document.activeElement);
-
-            if (e.key === 'ArrowDown') {
-                e.preventDefault();
-                const nextIndex = currentIndex === -1 ? 0 : (currentIndex + 1) % buttons.length;
-                buttons[nextIndex].focus();
-            } else if (e.key === 'ArrowUp') {
-                e.preventDefault();
-                const prevIndex = currentIndex <= 0 ? buttons.length - 1 : currentIndex - 1;
-                buttons[prevIndex].focus();
-            }
-        });
     </script>
 </body>
 </html>
