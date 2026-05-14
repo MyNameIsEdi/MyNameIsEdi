@@ -4,23 +4,6 @@
 
 אני מפתח אתרים ובודק תוכנה עם תשוקה לבניית מערכות חזקות - ופירוקן שיטתי כדי להבטיח איכות מקסימלית.
 
-- 🔭 **אני עובד כרגע על:** פיתוח מערכות מבוססות AI ב-EdiX.
-- ⚡ **כישורים טכניים:** Python, JavaScript, Selenium, Postman, React.
-- 💬 **דברו איתי על:** אוטומציה, פיתוח Backend ופתרון בעיות טכנולוגיות יצירתיות.
-
----
-
-## 🖥️ Featured Project: Interactive Terminal Portfolio
-בניתי פורטפוליו אינטראקטיבי בסגנון טרמינל רטרו (CRT). הוא כולל פקודות CLI, אפקטים קוליים וסריקת מערכת בזמן אמת.
-
-### [🚀 לחצו כאן לצפייה בגרסה החיה (Live Demo)](https://MyNameIsEdi.github.io/EdiPortfolio/)
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/MyNameIsEdi/EdiPortfolio/main/preview.jpeg" alt="Terminal Portfolio Preview" width="800" style="border-radius: 10px; border: 2px solid #33ff00;">
-  <br>
-  <i>ממשק שורת פקודה אינטראקטיבי המציג את הניסיון המקצועי שלי</i>
-</p>
-
 ---
 
 ## 🛠️ My Tech Stack
