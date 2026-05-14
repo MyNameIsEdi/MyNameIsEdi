@@ -44,4 +44,4 @@
 
 ---
 📫 **Contact me:** [![Email](https://img.shields.io/badge/Email-edix%40outlook.co.il-blue?style=flat-square&logo=microsoftoutlook)](mailto:edix@outlook.co.il)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Edi_Mazor-0077B5?style=flat-square&logo=linkedin)](https://linkedin.com/in/EdiM)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Edi_Mazor-0077B5?style=flat-square&logo=linkedin)](https://linkedin.com/in/Edi-M)
