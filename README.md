@@ -36,7 +36,7 @@
 
 ## 📈 GitHub Stats
 <p align="center">
-  <img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=YourUserName&theme=tokyonight" alt="Edi's GitHub Stats" />
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=YourUserName&theme=tokyonight&hide_border=true" alt="Edi's GitHub Streak" />
 </p>
 
 ---
