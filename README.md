@@ -16,7 +16,7 @@
 ### [🚀 לחצו כאן לצפייה בגרסה החיה (Live Demo)](https://YOUR-USERNAME.github.io/YOUR-REPO-NAME/)
 
 <p align="center">
-  <img src="https://via.placeholder.com/800x400?text=Terminal+Resume+Preview+GIF+Placeholder" alt="Terminal Portfolio Preview" width="800">
+  <img src="https://github.com/MyNameIsEdi/EdiPortfolio/blob/main/preview.jpeg" alt="Terminal Portfolio Preview" width="800">
   <br>
   <i>(טיפ: מומלץ להחליף את התמונה כאן ב-GIF של הטרמינל שלך בפעולה!)</i>
 </p>
