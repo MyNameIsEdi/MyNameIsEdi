@@ -36,7 +36,7 @@
 
 ## 📈 GitHub Stats
 <p align="center">
-  <img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=YourUserName&theme=tokyonight" alt="Edi's GitHub Stats" />
+  <img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=MyNameIsEdi&theme=tokyonight" alt="Edi's GitHub Stats" />
 </p>
 <p align="center">
   <img src="https://github-readme-streak-stats.herokuapp.com/?user=MyNameIsEdi&theme=tokyonight&hide_border=true" alt="Edi's GitHub Streak" />
@@ -44,4 +44,4 @@
 
 ---
 📫 **Contact me:** [![Email](https://img.shields.io/badge/Email-edix%40outlook.co.il-blue?style=flat-square&logo=microsoftoutlook)](mailto:edix@outlook.co.il)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Edi_Mazor-0077B5?style=flat-square&logo=linkedin)](https://linkedin.com/in/YOUR-PROFILE-URL)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Edi_Mazor-0077B5?style=flat-square&logo=linkedin)](https://linkedin.com/in/EdiM)
