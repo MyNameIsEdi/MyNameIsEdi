@@ -36,7 +36,7 @@
 
 ## 📈 GitHub Stats
 <p align="center">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=YourUserName&theme=tokyonight&hide_border=true" alt="Edi's GitHub Streak" />
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=MyNameIsEdi&theme=tokyonight&hide_border=true" alt="Edi's GitHub Streak" />
 </p>
 
 ---
