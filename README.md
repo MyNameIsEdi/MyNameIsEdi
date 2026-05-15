@@ -52,23 +52,4 @@
 | **Web** | ![React](https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB) ![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=node.js&logoColor=white) ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white) |
 | **Tools** | ![Git](https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white) ![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat-square&logo=linux&logoColor=black) ![SQL](https://img.shields.io/badge/SQL-4479A1?style=flat-square&logo=mysql&logoColor=white) |
 
----
 
-## 📈 GitHub Stats
-
-<p align="center">
-  <img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=MyNameIsEdi&theme=tokyonight" alt="Edi's GitHub Stats" />
-</p>
-<p align="center">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=MyNameIsEdi&theme=tokyonight&hide_border=true" alt="Edi's GitHub Streak" />
-</p>
-
----
-
-<div align="center">
-
-📫 **Let's connect:**
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Edi_Mazor-0077B5?style=flat-square&logo=linkedin)](https://linkedin.com/in/Edi-M)
-[![Email](https://img.shields.io/badge/Email-edix@outlook.co.il-blue?style=flat-square&logo=microsoftoutlook)](mailto:edix@outlook.co.il)
-
-</div>
