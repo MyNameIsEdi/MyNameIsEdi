@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Edi Mazor — Israel-based Web Developer & QA Engineer: Web Applications, Automation, and AI.">
     <meta name="theme-color" content="#050505">
-    <meta property="og:title" content="Edi Mazor — Terminal Resume">
+    <meta property="og:title" content="Edi Mazor — Terminal Portfolio">
     <meta property="og:description" content="Edi Mazor — Israel-based Web Developer & QA Engineer: Web Applications, Automation, and AI.">
     <meta property="og:type" content="website">
     <title>edi@qa-machine: ~</title>
-    
+
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -18,10 +18,7 @@
         "jobTitle": "Web Developer & Quality Assurance Engineer",
         "email": "edix@outlook.co.il",
         "telephone": "052-311-1517",
-        "address": {
-            "@type": "PostalAddress",
-            "addressCountry": "IL"
-        }
+        "address": { "@type": "PostalAddress", "addressCountry": "IL" }
     }
     </script>
 
@@ -36,6 +33,7 @@
             --term-error: #ff3333;
             --term-warning: #ffcc00;
             --term-pass: #00ff00;
+            --term-accent: #ff9500;
         }
 
         *, *::before, *::after { box-sizing: border-box; }
@@ -64,11 +62,10 @@
             position: relative;
             text-shadow: 0 0 4px rgba(51, 255, 0, 0.4);
             overflow-x: hidden;
-            /* Subtly simulates screen curvature */
             box-shadow: inset 0 0 100px rgba(0,0,0,0.9);
         }
 
-        /* CRT Scanlines & Flicker */
+        /* CRT Scanlines */
         body.terminal-page::after {
             content: "";
             position: fixed;
@@ -92,7 +89,6 @@
             100% { opacity: 0.55; }
         }
 
-        /* Glitch Effect for Headers */
         .glitch {
             position: relative;
             display: inline-block;
@@ -100,10 +96,8 @@
         .glitch::before, .glitch::after {
             content: attr(data-text);
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background: var(--term-bg);
         }
         .glitch::before {
@@ -120,11 +114,11 @@
         }
 
         @keyframes glitch-anim {
-            0% { clip: rect(10px, 9999px, 31px, 0); }
-            5% { clip: rect(70px, 9999px, 93px, 0); }
-            10% { clip: rect(31px, 9999px, 12px, 0); }
-            15% { clip: rect(89px, 9999px, 59px, 0); }
-            20% { clip: rect(0px, 0px, 0px, 0); }
+            0%   { clip: rect(10px, 9999px, 31px, 0); }
+            5%   { clip: rect(70px, 9999px, 93px, 0); }
+            10%  { clip: rect(31px, 9999px, 12px, 0); }
+            15%  { clip: rect(89px, 9999px, 59px, 0); }
+            20%  { clip: rect(0px, 0px, 0px, 0); }
             100% { clip: rect(0px, 0px, 0px, 0); }
         }
 
@@ -137,21 +131,33 @@
             background: #000;
             z-index: 10000;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             cursor: pointer;
+            gap: 1.5rem;
+        }
+        #init-screen .init-ascii {
+            color: var(--term-text);
+            font-family: "Fira Code", "Consolas", monospace;
+            font-size: clamp(0.5rem, 1.5vw, 0.85rem);
+            text-align: center;
+            white-space: pre;
+            text-shadow: 0 0 8px rgba(51,255,0,0.6);
+            line-height: 1.1;
+        }
+        #init-screen .init-label {
             color: var(--term-highlight);
-            font-size: 1.2rem;
+            font-family: "Fira Code", "Consolas", monospace;
+            font-size: 1.1rem;
             animation: pulse 1.5s infinite;
         }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
 
         /* Boot Screen */
         #boot-screen {
             position: absolute;
-            top: 2rem;
-            left: 1.5rem;
-            right: 1.5rem;
+            top: 2rem; left: 1.5rem; right: 1.5rem;
             z-index: 100;
             background: var(--term-bg);
             display: none;
@@ -159,7 +165,6 @@
 
         #main-content { display: none; opacity: 0; transition: opacity 0.5s ease-in; }
 
-        /* Terminal Prompt Styling */
         .prompt-line {
             margin-top: 1rem;
             margin-bottom: 0.5rem;
@@ -167,15 +172,14 @@
             flex-wrap: wrap;
             align-items: center;
         }
-        .prompt-user { color: var(--term-prompt-user); font-weight: bold; }
-        .prompt-at { color: var(--term-highlight); }
-        .prompt-host { color: var(--term-prompt-user); font-weight: bold; }
+        .prompt-user  { color: var(--term-prompt-user);  font-weight: bold; }
+        .prompt-at    { color: var(--term-highlight); }
+        .prompt-host  { color: var(--term-prompt-user);  font-weight: bold; }
         .prompt-colon { color: var(--term-highlight); }
-        .prompt-path { color: var(--term-prompt-path); font-weight: bold; }
-        .prompt-char { color: var(--term-highlight); margin-right: 0.5rem; margin-left: 2px;}
-        .prompt-cmd { color: var(--term-highlight); word-break: break-all; }
+        .prompt-path  { color: var(--term-prompt-path);  font-weight: bold; }
+        .prompt-char  { color: var(--term-highlight); margin-right: 0.5rem; margin-left: 2px; }
+        .prompt-cmd   { color: var(--term-highlight); word-break: break-all; }
 
-        /* Interactive Input */
         #cli-input {
             background: transparent;
             border: none;
@@ -186,7 +190,7 @@
             min-width: 100px;
             outline: none;
             text-shadow: inherit;
-            caret-color: transparent; 
+            caret-color: transparent;
         }
 
         .term-panel { margin-bottom: 2.5rem; }
@@ -212,15 +216,28 @@
             .term-dl dt { margin-top: 0.8rem; }
         }
 
-        a { color: var(--term-highlight); text-decoration: underline; text-decoration-color: var(--term-dim); text-underline-offset: 4px; transition: 0.2s; }
-        a:hover, a:focus-visible { background-color: var(--term-text); color: var(--term-bg); text-shadow: none; text-decoration: none; }
+        a {
+            color: var(--term-prompt-user);
+            text-decoration: underline;
+            text-decoration-color: var(--term-dim);
+            text-underline-offset: 4px;
+            transition: 0.2s;
+        }
+        a:hover, a:focus-visible {
+            background-color: var(--term-text);
+            color: var(--term-bg);
+            text-shadow: none;
+            text-decoration: none;
+        }
 
         .skill-block { margin-bottom: 1.5rem; }
-        .skill-block h3 { margin: 0 0 0.5rem 0; color: var(--term-highlight); font-weight: normal;}
-        .skill-block ul { list-style: none; margin: 0; padding-left: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.5rem; }
+        .skill-block h3 { margin: 0 0 0.5rem 0; color: var(--term-highlight); font-weight: normal; }
+        .skill-block ul {
+            list-style: none; margin: 0; padding-left: 0;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.5rem;
+        }
         .skill-block ul li::before { content: "[PASS] "; color: var(--term-prompt-user); }
 
-        /* ASCII Art */
         .ascii-mindmap {
             display: block;
             font-family: inherit;
@@ -231,13 +248,12 @@
             margin: 0;
         }
         .c-node { color: var(--term-highlight); font-weight: bold; }
-        .c-line { color: var(--term-dim); }
+        .c-line  { color: var(--term-dim); }
 
         @media (max-width: 48rem) { .ascii-mindmap { font-size: 0.55rem; } }
 
-        /* Command Buttons */
         .cmd-list { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
-        
+
         button {
             display: inline-block;
             text-align: left;
@@ -260,7 +276,6 @@
             outline: none;
         }
 
-        /* Executed Script Output Styles */
         .history-block { margin-bottom: 1rem; }
         .cmd-output {
             margin-top: 0.5rem;
@@ -272,23 +287,79 @@
         .cmd-output ul { list-style: none; padding-left: 0; margin: 0 0 0.5rem 0; }
         .cmd-output ul li { margin-bottom: 0.35rem; }
         .cmd-output ul li::before { content: "> "; color: var(--term-dim); }
-        .cmd-output p { margin: 0; }
-        
-        .text-dim { color: var(--term-dim); }
-        .text-error { color: var(--term-error); }
-        .text-warning { color: var(--term-warning); }
-        .text-pass { color: var(--term-pass); }
+        .cmd-output p { margin: 0 0 0.25rem 0; }
+
+        /* Project cards in terminal */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.5rem;
+        }
+        .project-card {
+            border: 1px solid var(--term-dim);
+            padding: 0.75rem;
+            transition: border-color 0.2s, background 0.2s;
+        }
+        .project-card:hover { border-color: var(--term-text); background: rgba(51,255,0,0.04); }
+        .project-card .proj-name { color: var(--term-highlight); font-weight: bold; display: block; margin-bottom: 0.3rem; }
+        .project-card .proj-name::before { content: "📁 "; }
+        .project-card .proj-desc { color: var(--term-text); font-size: 0.9rem; margin-bottom: 0.5rem; display: block; }
+        .project-card .proj-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+        .proj-tag {
+            font-size: 0.75rem;
+            padding: 1px 6px;
+            border: 1px solid var(--term-dim);
+            color: var(--term-prompt-user);
+        }
+        .proj-link { color: var(--term-prompt-user) !important; font-size: 0.85rem; }
+
+        /* Neofetch output */
+        .neofetch-wrap {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            align-items: flex-start;
+        }
+        .neofetch-art {
+            color: var(--term-text);
+            white-space: pre;
+            font-size: 0.75rem;
+            line-height: 1.1;
+            text-shadow: 0 0 6px rgba(51,255,0,0.7);
+            flex-shrink: 0;
+        }
+        .neofetch-info { flex: 1; min-width: 200px; }
+        .neofetch-info p { margin: 0 0 0.2rem 0; }
+        .neofetch-key { color: var(--term-prompt-user); font-weight: bold; }
+        .neofetch-bar {
+            display: inline-flex;
+            gap: 4px;
+            margin-top: 0.5rem;
+        }
+        .neofetch-color {
+            width: 14px;
+            height: 14px;
+            display: inline-block;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .text-dim       { color: var(--term-dim); }
+        .text-error     { color: var(--term-error); }
+        .text-warning   { color: var(--term-warning); }
+        .text-pass      { color: var(--term-pass); }
+        .text-highlight { color: var(--term-highlight); }
+        .text-accent    { color: var(--term-accent); }
+        .text-cyan      { color: var(--term-prompt-user); }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateX(-5px); }
-            to { opacity: 1; transform: translateX(0); }
+            to   { opacity: 1; transform: translateX(0); }
         }
 
-        /* Blinking Cursor */
         .cursor-blink {
             display: inline-block;
-            width: 10px;
-            height: 1.2em;
+            width: 10px; height: 1.2em;
             background-color: var(--term-text);
             animation: blink 1s step-end infinite;
             vertical-align: bottom;
@@ -297,14 +368,13 @@
         }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-        /* Accessibility: Reduce Motion */
         @media (prefers-reduced-motion: reduce) {
             body.terminal-page::after { animation: none; opacity: 0.1; }
             .glitch::before, .glitch::after { animation: none; display: none; }
             .cursor-blink { animation: none; opacity: 1; }
         }
 
-        /* Print Styles */
+        /* ── Print ─────────────────────────────────────── */
         @page { size: A4; margin: 10mm 15mm; }
 
         @media print {
@@ -316,27 +386,23 @@
             body.terminal-page::after { display: none !important; }
             .no-print, .ascii-mindmap, .cursor-blink, .prompt-line, button, #execution-history, #boot-screen, #init-screen { display: none !important; }
             #main-content { display: grid !important; opacity: 1 !important; grid-template-columns: 1fr 1.8fr; gap: 20px; align-items: start; }
-            
             header { border-bottom: 2px solid #333; margin-bottom: 10px; padding-bottom: 5px; grid-column: 1 / -1; }
             .print-header-title { font-size: 20pt; font-weight: bold; color: #000; display: block; }
-            .print-header-sub { font-size: 11pt; color: #555; }
-
+            .print-header-sub   { font-size: 11pt; color: #555; }
             .term-panel { margin-bottom: 10px; }
             .print-h2 { font-size: 12pt; font-weight: bold; color: #000 !important; border-bottom: 1px solid #aaa; padding-bottom: 2px; margin-bottom: 8px; display: block !important; }
             h3 { font-size: 10pt; color: #000 !important; margin-bottom: 3px; font-weight: bold; }
             .term-dl { display: block; }
             .term-dl dt { font-weight: bold; color: #000 !important; margin-top: 6px; }
             .term-dl dd { margin-bottom: 4px; color: #333; }
-
             .skill-block { margin-bottom: 8px; border: none; padding: 0; }
             .skill-block ul { display: block; }
             .skill-block ul li::before { content: "• "; color: #000; font-weight: bold; }
             .skill-block ul li { margin-bottom: 2px; }
             a { color: #0056b3 !important; text-decoration: none; border: none; }
-
             .print-only { display: block !important; }
             .print-project-item { margin-bottom: 10px; }
-            .print-project-item h3 { font-size: 11pt; margin: 0 0 4px 0; color: #000 !important;}
+            .print-project-item h3 { font-size: 11pt; margin: 0 0 4px 0; color: #000 !important; }
             .print-project-item ul { list-style-type: disc; padding-left: 15px; margin: 0; }
             .print-project-item ul li { margin-bottom: 2px; padding-left: 0; }
             .print-project-item ul li::before { display: none; }
@@ -349,59 +415,65 @@
 <body class="terminal-page">
 
     <div id="init-screen" onclick="startBootSequence()">
-        [ Click anywhere to initialize terminal connection ]
+        <pre class="init-ascii">
+ ███████╗██████╗ ██╗    ███╗   ███╗ █████╗ ███████╗ ██████╗ ██████╗
+ ██╔════╝██╔══██╗██║    ████╗ ████║██╔══██╗╚══███╔╝██╔═══██╗██╔══██╗
+ █████╗  ██║  ██║██║    ██╔████╔██║███████║  ███╔╝ ██║   ██║██████╔╝
+ ██╔══╝  ██║  ██║██║    ██║╚██╔╝██║██╔══██║ ███╔╝  ██║   ██║██╔══██╗
+ ███████╗██████╔╝██║    ██║ ╚═╝ ██║██║  ██║███████╗╚██████╔╝██║  ██║
+ ╚══════╝╚═════╝ ╚═╝    ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝ ╚═════╝ ╚═╝  ╚═╝
+        </pre>
+        <span class="init-label">[ Click anywhere to initialize terminal connection ]</span>
     </div>
 
     <div id="boot-screen" class="no-print"></div>
 
     <header class="print-only">
         <span class="print-header-title">Edi Mazor</span>
-        <span class="print-header-sub">Web Developer & QA Engineer | Israel</span>
+        <span class="print-header-sub">Web Developer & QA Engineer | Israel | edix@outlook.co.il | 052-311-1517</span>
     </header>
 
     <main id="main-content">
         <div class="print-col-left">
+
+            <!-- Profile -->
             <section class="term-panel" aria-labelledby="sys-info">
                 <div class="prompt-line no-print">
                     <span class="prompt-user">edi</span><span class="prompt-at">@</span><span class="prompt-host">qa-machine</span><span class="prompt-colon">:</span><span class="prompt-path">~</span><span class="prompt-char">$</span>
                     <span class="prompt-cmd">cat profile.txt</span>
                 </div>
                 <h2 class="print-only print-h2 glitch" data-text="Profile">Profile</h2>
-                
                 <dl class="term-dl">
-                    <dt>Operator_ID:</dt>
-                    <dd>Edi Mazor</dd>
-                    <dt>Education:</dt>
-                    <dd>QA Course Graduate (Web & Mobile) — SVCollege</dd>
-                    <dt>Current_Status:</dt>
-                    <dd>Owner @ EdiX</dd>
-                    <dt>Previous_Deployment:</dt>
-                    <dd>QA Tester @ SightBit (2021-2023)</dd>
-                    <dt>Military_Service:</dt>
-                    <dd>Staff Sergeant (Combat Support)</dd>
-                    <dt>Languages:</dt>
-                    <dd>Hebrew, English</dd>
+                    <dt>Operator_ID:</dt>   <dd>Edi Mazor</dd>
+                    <dt>Education:</dt>     <dd>QA Course Graduate (Web &amp; Mobile) — SVCollege</dd>
+                    <dt>Status:</dt>        <dd>Owner @ EdiX</dd>
+                    <dt>Prev_Role:</dt>     <dd>QA Tester @ SightBit (2021–2023)</dd>
+                    <dt>Military:</dt>      <dd>Staff Sergeant (Combat Support)</dd>
+                    <dt>Languages:</dt>     <dd>Hebrew, English</dd>
                 </dl>
             </section>
 
-            <section class="term-panel bios-contact" aria-labelledby="contact">
+            <!-- Contact -->
+            <section class="term-panel" aria-labelledby="contact">
                 <div class="prompt-line no-print">
                     <span class="prompt-user">edi</span><span class="prompt-at">@</span><span class="prompt-host">qa-machine</span><span class="prompt-colon">:</span><span class="prompt-path">~</span><span class="prompt-char">$</span>
-                    <span class="prompt-cmd">netstat -an | grep CONTACT</span>
+                    <span class="prompt-cmd">cat social.txt</span>
                 </div>
                 <h2 class="print-only print-h2">Contact</h2>
                 <dl class="term-dl">
-                    <dt>Email:</dt>
-                    <dd><a href="mailto:edix@outlook.co.il?subject=Contact%20from%20portfolio">edix@outlook.co.il</a></dd>
-                    <dt>Phone:</dt>
-                    <dd>052-311-1517</dd>
-                    <dt>Location:</dt>
-                    <dd>Israel</dd>
+                    <dt>Email:</dt>    <dd><a href="mailto:edix@outlook.co.il?subject=Contact%20from%20portfolio">edix@outlook.co.il</a></dd>
+                    <dt>Phone:</dt>    <dd>052-311-1517</dd>
+                    <dt>GitHub:</dt>   <dd><a href="https://github.com/MyNameIsEdi" target="_blank" rel="noopener">github.com/MyNameIsEdi</a></dd>
+                    <dt>LinkedIn:</dt> <dd><a href="https://linkedin.com/in/Edi-M" target="_blank" rel="noopener">linkedin.com/in/Edi-M</a></dd>
+                    <dt>Location:</dt> <dd>Israel</dd>
                 </dl>
             </section>
+
         </div>
 
         <div class="print-col-right">
+
+            <!-- Skills -->
             <section class="term-panel" aria-labelledby="skills">
                 <div class="prompt-line no-print">
                     <span class="prompt-user">edi</span><span class="prompt-at">@</span><span class="prompt-host">qa-machine</span><span class="prompt-colon">:</span><span class="prompt-path">~</span><span class="prompt-char">$</span>
@@ -417,26 +489,28 @@
                         <li>HTML5, CSS3</li>
                     </ul>
                 </div>
-
                 <div class="skill-block">
                     <h3>QA &amp; Automation</h3>
                     <ul>
+                        <li>Playwright (E2E)</li>
                         <li>Selenium WebDriver</li>
                         <li>API Testing (Postman)</li>
-                        <li>Chrome DevTools, STP, STD</li>
+                        <li>STP / STD Methodologies</li>
+                        <li>Chrome DevTools</li>
                     </ul>
                 </div>
-
                 <div class="skill-block">
                     <h3>Environments &amp; Tools</h3>
                     <ul>
                         <li>Git / GitHub, Linux</li>
                         <li>SQL, Jira</li>
                         <li>AI Tools Integration</li>
+                        <li>FiveM / Lua scripting</li>
                     </ul>
                 </div>
             </section>
 
+            <!-- ASCII Mind Map -->
             <section class="term-panel" aria-labelledby="mind-map">
                 <div class="prompt-line no-print">
                     <span class="prompt-user">edi</span><span class="prompt-at">@</span><span class="prompt-host">qa-machine</span><span class="prompt-colon">:</span><span class="prompt-path">~</span><span class="prompt-char">$</span>
@@ -444,63 +518,73 @@
                 </div>
                 <h2 class="print-only print-h2">System Architecture</h2>
 <pre class="ascii-mindmap">
-<span class="c-node">[DEVELOPMENT]</span> <span class="c-line">═══════════════════╗         ╔═════════════════</span> <span class="c-node">[QA &amp; AUTOMATION]</span>
-<span class="c-line">├─</span> <span class="c-text">JS / Python / Java</span>              <span class="c-line">║         ║</span>                  <span class="c-line">├─</span> <span class="c-text">Selenium WebDriver</span>
-<span class="c-line">├─</span> <span class="c-text">React / Node.js</span>                 <span class="c-line">║         ║</span>                  <span class="c-line">├─</span> <span class="c-text">API (Postman)</span>
-<span class="c-line">└─</span> <span class="c-text">HTML5 / CSS3</span>                    <span class="c-line">║         ║</span>                  <span class="c-line">└─</span> <span class="c-text">STP / STD Methodologies</span>
-                            <span class="c-line">╔══╩═════════╩══╗</span>
-                            <span class="c-line">║  CORE SYSTEM  ║</span>
-                            <span class="c-line">╚══╦═════════╦══╝</span>
-<span class="c-node">[TOOLS &amp; ENV]</span> <span class="c-line">═══════════════════╝         ╚═══════════════════</span> <span class="c-node">[AI &amp; OPS]</span>
-<span class="c-line">├─</span> <span class="c-text">Git / Linux / SQL</span>                                            <span class="c-line">├─</span> <span class="c-text">AI Tools Integration</span>
-<span class="c-line">├─</span> <span class="c-text">Chrome DevTools</span>                                              <span class="c-line">├─</span> <span class="c-text">Jira</span>
-<span class="c-line">└─</span> <span class="c-text">Creative Troubleshooting</span>                                       <span class="c-line">└─</span> <span class="c-text">Project Management</span>
+<span class="c-node">[DEVELOPMENT]</span> <span class="c-line">════════════════════╗         ╔════════════════</span> <span class="c-node">[QA &amp; AUTOMATION]</span>
+<span class="c-line">├─</span> JS / Python / Java              <span class="c-line">║         ║</span>                  <span class="c-line">├─</span> Playwright (E2E)
+<span class="c-line">├─</span> React / Node.js                  <span class="c-line">║         ║</span>                  <span class="c-line">├─</span> Selenium WebDriver
+<span class="c-line">└─</span> HTML5 / CSS3                     <span class="c-line">║         ║</span>                  <span class="c-line">└─</span> API (Postman)
+                             <span class="c-line">╔══╩═════════╩══╗</span>
+                             <span class="c-line">║  CORE SYSTEM  ║</span>
+                             <span class="c-line">╚══╦═════════╦══╝</span>
+<span class="c-node">[TOOLS &amp; ENV]</span> <span class="c-line">════════════════════╝         ╚════════════════</span> <span class="c-node">[AI &amp; OPS]</span>
+<span class="c-line">├─</span> Git / Linux / SQL                                             <span class="c-line">├─</span> AI Tools Integration
+<span class="c-line">├─</span> Jira / DevTools                                               <span class="c-line">├─</span> Project Management
+<span class="c-line">└─</span> FiveM / Lua                                                   <span class="c-line">└─</span> Creative Problem Solving
 </pre>
             </section>
 
+            <!-- Experience / Projects — Interactive -->
             <section class="term-panel" aria-labelledby="projects">
                 <div class="prompt-line no-print">
                     <span class="prompt-user">edi</span><span class="prompt-at">@</span><span class="prompt-host">qa-machine</span><span class="prompt-colon">:</span><span class="prompt-path">~/experience</span><span class="prompt-char">$</span>
-                    <span class="prompt-cmd">ls -x (Hint: Use 'Tab', ↑/↓ arrows, or click commands)</span>
+                    <span class="prompt-cmd">ls -x  <span class="text-dim">(Hint: Use Tab, ↑/↓ arrows, or click a command)</span></span>
                 </div>
                 <h2 class="print-only print-h2">Professional Experience</h2>
-                
+
                 <div class="cmd-list no-print" id="clickable-commands">
+                    <button type="button" onclick="typeAndExecute('./show_projects.sh')">./show_projects.sh <span class="text-dim">(GitHub Projects)</span></button>
                     <button type="button" onclick="typeAndExecute('./run_edix_company.sh')">./run_edix_company.sh</button>
                     <button type="button" onclick="typeAndExecute('./run_sightbit_qa.sh')">./run_sightbit_qa.sh</button>
                     <button type="button" onclick="typeAndExecute('./run_military_service.sh')">./run_military_service.sh</button>
                     <button type="button" onclick="typeAndExecute('run_tests')">run_tests <span class="text-dim">(System Scan)</span></button>
-                    <button type="button" onclick="typeAndExecute('print')">print <span class="text-dim">(Export to PDF)</span></button>
-                    <button type="button" onclick="typeAndExecute('help')">help <span class="text-dim">(Show available commands)</span></button>
+                    <button type="button" onclick="typeAndExecute('neofetch')">neofetch</button>
+                    <button type="button" onclick="typeAndExecute('print')">print <span class="text-dim">(Export PDF)</span></button>
+                    <button type="button" onclick="typeAndExecute('help')">help</button>
                 </div>
 
+                <!-- Print-only experience content -->
                 <div class="print-only">
                     <div class="print-project-item">
-                        <h3>EdiX — Web Development and Web Applications Company (2023 - Present)</h3>
+                        <h3>EdiX — Web Development &amp; Web Applications (2023 – Present)</h3>
                         <ul>
-                            <li><strong>Role:</strong> Owner & Lead Developer.</li>
-                            <li><strong>Responsibilities:</strong> Managing operations, leading and fully developing systems for various clients using AI, and finding creative solutions to technological challenges.</li>
-                            <li><strong>QA Integration:</strong> Implementing structured QA processes as an integral part of every project, including functional testing, compatibility testing, and Selenium automation for repetitive tasks.</li>
+                            <li><strong>Role:</strong> Owner &amp; Lead Developer.</li>
+                            <li><strong>Responsibilities:</strong> Managing operations, leading full-stack development for clients using AI, and applying structured QA including Playwright/Selenium automation.</li>
                         </ul>
                     </div>
                     <div class="print-project-item">
-                        <h3>SightBit — AI Drowning Prevention Startup (2021 - 2023)</h3>
+                        <h3>SightBit — AI Drowning Prevention Startup (2021 – 2023)</h3>
                         <ul>
                             <li><strong>Role:</strong> QA Tester.</li>
-                            <li><strong>Responsibilities:</strong> Performing software testing on a video analysis system, verifying the accuracy of real-time object detection (swimmers, boats), and identifying water hazards such as rip currents and abnormal waves.</li>
-                            <li><strong>Impact:</strong> Tested the real-time alert mechanism designed for lifeguards and rescue teams, documented bugs, and ensured the system's quality prior to its deployment.</li>
+                            <li><strong>Responsibilities:</strong> Software testing on real-time video analysis system, object detection accuracy, hazard identification, and bug documentation.</li>
                         </ul>
                     </div>
                     <div class="print-project-item">
                         <h3>Military Service</h3>
                         <ul>
-                            <li><strong>Role:</strong> Combat Support in the Armored Corps.</li>
-                            <li><strong>Status:</strong> Full military service, honorably discharged with the rank of Staff Sergeant.</li>
+                            <li>Combat Support — Armored Corps. Honorably discharged, rank of Staff Sergeant.</li>
+                        </ul>
+                    </div>
+                    <div class="print-project-item">
+                        <h3>GitHub Projects</h3>
+                        <ul>
+                            <li><strong>E-commerce API Testing</strong> — Postman-based end-to-end API test suite.</li>
+                            <li><strong>Python QA Project</strong> — Python automation and QA scripting.</li>
+                            <li><strong>Playwright Portfolio</strong> — Modern E2E browser automation with Playwright.</li>
+                            <li><strong>District18</strong> — FiveM GTA V roleplay server (Lua, custom scripts).</li>
                         </ul>
                     </div>
                 </div>
             </section>
-            
+
             <div id="execution-history" class="no-print" aria-live="polite"></div>
 
             <div id="active-prompt-container" class="prompt-line no-print" style="display:none;">
@@ -508,159 +592,182 @@
                 <input type="text" id="cli-input" autocomplete="off" spellcheck="false" aria-label="Terminal command input">
                 <span class="cursor-blink"></span>
             </div>
-            
+
         </div>
     </main>
 
     <script>
-        // Audio Setup
+        // ── Audio ──────────────────────────────────────────────────────────────
         let audioCtx;
         function initAudio() {
-            if (!audioCtx) {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            }
-            if(audioCtx.state === 'suspended') audioCtx.resume();
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            if (audioCtx.state === 'suspended') audioCtx.resume();
         }
-        
         function playTypingSound() {
-            if(!audioCtx) return;
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
+            if (!audioCtx) return;
+            const osc = audioCtx.createOscillator(), gain = audioCtx.createGain();
             osc.type = 'square';
             osc.frequency.setValueAtTime(800 + Math.random() * 200, audioCtx.currentTime);
-            gain.gain.setValueAtTime(0.005, audioCtx.currentTime); 
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
-            osc.start();
-            osc.stop(audioCtx.currentTime + 0.02);
+            gain.gain.setValueAtTime(0.005, audioCtx.currentTime);
+            osc.connect(gain); gain.connect(audioCtx.destination);
+            osc.start(); osc.stop(audioCtx.currentTime + 0.02);
         }
-
         function playExecuteSound() {
-            if(!audioCtx) return;
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
+            if (!audioCtx) return;
+            const osc = audioCtx.createOscillator(), gain = audioCtx.createGain();
             osc.type = 'sawtooth';
             osc.frequency.setValueAtTime(400, audioCtx.currentTime);
             osc.frequency.exponentialRampToValueAtTime(800, audioCtx.currentTime + 0.1);
-            gain.gain.setValueAtTime(0.02, audioCtx.currentTime); 
+            gain.gain.setValueAtTime(0.02, audioCtx.currentTime);
             gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
-            osc.start();
-            osc.stop(audioCtx.currentTime + 0.1);
+            osc.connect(gain); gain.connect(audioCtx.destination);
+            osc.start(); osc.stop(audioCtx.currentTime + 0.1);
         }
-
         function playPassSound() {
-            if(!audioCtx) return;
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
+            if (!audioCtx) return;
+            const osc = audioCtx.createOscillator(), gain = audioCtx.createGain();
             osc.type = 'sine';
             osc.frequency.setValueAtTime(1200, audioCtx.currentTime);
             osc.frequency.setValueAtTime(1600, audioCtx.currentTime + 0.1);
-            gain.gain.setValueAtTime(0.01, audioCtx.currentTime); 
+            gain.gain.setValueAtTime(0.01, audioCtx.currentTime);
             gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.2);
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
-            osc.start();
-            osc.stop(audioCtx.currentTime + 0.2);
+            osc.connect(gain); gain.connect(audioCtx.destination);
+            osc.start(); osc.stop(audioCtx.currentTime + 0.2);
         }
 
-        // Available Commands for Autocomplete
+        // ── Command Data ───────────────────────────────────────────────────────
         const availableCommands = [
+            './show_projects.sh',
             './run_edix_company.sh',
             './run_sightbit_qa.sh',
             './run_military_service.sh',
-            'help', 'clear', 'print', 'whoami', 'sudo', 'run_tests', 'date', 'echo'
+            'help', 'clear', 'print', 'whoami', 'sudo', 'run_tests', 'neofetch', 'date', 'echo', 'github', 'linkedin'
         ];
 
         const commandResponses = {
-            './run_edix_company.sh': `<h3>EdiX — Web Development and Web Applications Company (2023 - Present)</h3>
-                        <ul>
-                            <li><strong>Role:</strong> Owner & Lead Developer.</li>
-                            <li><strong>Responsibilities:</strong> Managing operations, leading and fully developing systems for various clients using AI, and finding creative solutions to technological challenges.</li>
-                            <li><strong>QA Integration:</strong> Implementing structured QA processes as an integral part of every project, including functional testing, compatibility testing, and using Selenium for automation of repetitive tasks.</li>
-                        </ul>
-                        <p class="text-dim"># Stack: Web Development, AI, Selenium WebDriver, Management.</p>`,
-            './run_sightbit_qa.sh': `<h3>SightBit — AI Drowning Prevention Startup (2021 - 2023)</h3>
-                        <ul>
-                            <li><strong>Role:</strong> QA Tester.</li>
-                            <li><strong>Responsibilities:</strong> Performing software testing on a video analysis system, verifying the accuracy of real-time object detection (swimmers, boats), and identifying water hazards such as rip currents and abnormal waves.</li>
-                            <li><strong>Impact:</strong> Tested the real-time alert mechanism designed for lifeguards and rescue teams, documented bugs, and ensured the system's quality prior to its deployment.</li>
-                        </ul>
-                        <p class="text-dim"># Stack: AI/Computer Vision Testing, Real-Time Systems, Bug Documentation.</p>`,
-            './run_military_service.sh': `<h3>Military Service</h3>
-                        <ul>
-                            <li><strong>Role:</strong> Combat Support in the Armored Corps.</li>
-                            <li><strong>Status:</strong> Full military service, honorably discharged with the rank of Staff Sergeant.</li>
-                        </ul>`,
+            './show_projects.sh': `PROJECTS`,
+            './run_edix_company.sh': `
+                <h3>EdiX — Web Development &amp; Web Applications (2023 – Present)</h3>
+                <ul>
+                    <li><strong>Role:</strong> Owner &amp; Lead Developer.</li>
+                    <li><strong>Responsibilities:</strong> Managing operations, leading full-stack development for clients using AI, and finding creative solutions to technological challenges.</li>
+                    <li><strong>QA Integration:</strong> Structured QA processes on every project — functional testing, compatibility testing, and Playwright/Selenium automation.</li>
+                </ul>
+                <p class="text-dim"># Stack: Web Development · AI · Playwright · Selenium · Management.</p>`,
+            './run_sightbit_qa.sh': `
+                <h3>SightBit — AI Drowning Prevention Startup (2021 – 2023)</h3>
+                <ul>
+                    <li><strong>Role:</strong> QA Tester.</li>
+                    <li><strong>Responsibilities:</strong> Software testing on a real-time video analysis system, verifying accuracy of object detection (swimmers, boats), and identifying water hazards such as rip currents.</li>
+                    <li><strong>Impact:</strong> Tested real-time alert mechanisms for lifeguards, documented bugs, and ensured system quality before deployment.</li>
+                </ul>
+                <p class="text-dim"># Stack: AI/Computer Vision Testing · Real-Time Systems · Bug Documentation.</p>`,
+            './run_military_service.sh': `
+                <h3>Military Service — Armored Corps</h3>
+                <ul>
+                    <li><strong>Role:</strong> Combat Support.</li>
+                    <li><strong>Status:</strong> Full military service, honorably discharged. Rank: Staff Sergeant.</li>
+                </ul>`,
             'help': `<p>Available commands:</p>
-                     <ul>
-                        <li><span class="text-highlight">./run_edix_company.sh</span> - Display EdiX Experience</li>
-                        <li><span class="text-highlight">./run_sightbit_qa.sh</span> - Display SightBit QA Experience</li>
-                        <li><span class="text-highlight">./run_military_service.sh</span> - Display Military Service</li>
-                        <li><span class="text-highlight">run_tests</span> - Execute full system scan</li>
-                        <li><span class="text-highlight">clear</span> - Clear terminal history</li>
-                        <li><span class="text-highlight">print</span> - Export resume to PDF</li>
-                        <li><span class="text-highlight">whoami</span> - Display current user info</li>
-                        <li><span class="text-highlight">date</span> - Display system date</li>
-                     </ul>`,
-            'whoami': `<p>Edi Mazor<br>Web Developer & Quality Assurance Engineer<br>Passionate about building robust systems and breaking them systematically to ensure flawless production.</p>`,
+                <ul>
+                    <li><span class="text-cyan">./show_projects.sh</span>       — Display GitHub projects</li>
+                    <li><span class="text-cyan">./run_edix_company.sh</span>    — EdiX experience</li>
+                    <li><span class="text-cyan">./run_sightbit_qa.sh</span>     — SightBit QA experience</li>
+                    <li><span class="text-cyan">./run_military_service.sh</span>— Military service</li>
+                    <li><span class="text-cyan">run_tests</span>               — Full system scan</li>
+                    <li><span class="text-cyan">neofetch</span>                — System info</li>
+                    <li><span class="text-cyan">github</span>                  — Open GitHub profile</li>
+                    <li><span class="text-cyan">linkedin</span>                — Open LinkedIn profile</li>
+                    <li><span class="text-cyan">whoami</span>                  — Current user info</li>
+                    <li><span class="text-cyan">date</span>                    — System date</li>
+                    <li><span class="text-cyan">clear</span>                   — Clear terminal</li>
+                    <li><span class="text-cyan">print</span>                   — Export resume to PDF</li>
+                </ul>`,
+            'whoami': `<p><span class="text-highlight">edi</span> — Edi Mazor<br>
+                Web Developer &amp; QA Automation Engineer<br>
+                Building robust systems — and breaking them to ensure maximum quality.</p>`,
             'sudo': `<p class="text-error">edi is not in the sudoers file. This incident will be reported to the cyber police.</p>`,
             'date': `<p>${new Date().toString()}</p>`,
-            'clear': 'CLEAR_CMD',
-            'run_tests': 'RUN_TESTS_CMD'
+            'github':   `OPEN_URL:https://github.com/MyNameIsEdi`,
+            'linkedin': `OPEN_URL:https://linkedin.com/in/Edi-M`,
+            'clear':    'CLEAR_CMD',
+            'run_tests':'RUN_TESTS_CMD',
+            'neofetch': 'NEOFETCH_CMD',
+            'print':    'PRINT_CMD',
         };
 
-        const cliInput = document.getElementById('cli-input');
+        const projects = [
+            {
+                name: 'E-commerce-API-Testing',
+                url: 'https://github.com/MyNameIsEdi/E-commerce-API-Testing',
+                desc: 'End-to-end API test suite for an e-commerce platform — auth, products, cart, orders.',
+                tags: ['Postman', 'REST API', 'JSON Schema', 'QA']
+            },
+            {
+                name: 'Python QA Project',
+                url: 'https://github.com/MyNameIsEdi/Python',
+                desc: 'Python-based QA automation — test frameworks, scripting utilities, and real-world QA practices.',
+                tags: ['Python', 'pytest', 'Automation']
+            },
+            {
+                name: 'Playwright-Portfolio',
+                url: 'https://github.com/MyNameIsEdi/Playwright-Portfolio',
+                desc: 'Modern browser automation and E2E testing — multi-browser, visual regression, CI-ready.',
+                tags: ['Playwright', 'TypeScript', 'E2E', 'CI/CD']
+            },
+            {
+                name: 'District18',
+                url: 'https://github.com/MyNameIsEdi/District18',
+                desc: 'Full FiveM GTA V roleplay server — custom Lua scripts, resource management, server-side logic.',
+                tags: ['Lua', 'FiveM', 'JavaScript', 'Game Dev']
+            }
+        ];
+
+        // ── DOM refs ───────────────────────────────────────────────────────────
+        const cliInput  = document.getElementById('cli-input');
         const historyDiv = document.getElementById('execution-history');
-        
-        let isExecuting = false;
+        let isExecuting  = false;
         let commandHistory = [];
-        let historyIndex = -1;
+        let historyIndex   = -1;
 
-        // Auto-focus input when clicking or typing anywhere
+        // Auto-focus
         document.addEventListener('click', () => {
-            if (window.getSelection().toString() === '') {
-                cliInput.focus();
-            }
+            if (window.getSelection().toString() === '') cliInput.focus();
         });
-
         document.addEventListener('keydown', (e) => {
-            // Auto focus if a printable character is typed and no modifier keys are held
-            if (document.activeElement !== cliInput && !e.ctrlKey && !e.metaKey && !e.altKey && e.key.length === 1) {
+            if (document.activeElement !== cliInput && !e.ctrlKey && !e.metaKey && !e.altKey && e.key.length === 1)
                 cliInput.focus();
-            }
         });
 
-        // Boot Sequence Logic
+        // ── Boot Sequence ──────────────────────────────────────────────────────
         async function startBootSequence() {
             document.getElementById('init-screen').style.display = 'none';
             initAudio();
-            
-            const bootScreen = document.getElementById('boot-screen');
+
+            const bootScreen  = document.getElementById('boot-screen');
             const mainContent = document.getElementById('main-content');
             const activePrompt = document.getElementById('active-prompt-container');
-            
+
             bootScreen.style.display = 'block';
 
             const bootLogs = [
-                { text: "Initializing Developer/QA environment v3.0.1...", delay: 200 },
+                { text: "EdiX OS v3.1.0 — Developer/QA Environment", delay: 200 },
                 { text: "Mounting filesystems... [OK]", delay: 100 },
                 { text: "Starting AI logic cores... [OK]", delay: 150 },
-                { text: "Loading regression & development suites... ", delay: 400, progress: true },
-                { text: "Executing user session: edi@qa-machine", delay: 200 }
+                { text: "Loading Playwright & Selenium suites... ", delay: 400, progress: true },
+                { text: "Connecting to GitHub... [OK]", delay: 150 },
+                { text: "Executing user session: edi@qa-machine", delay: 200 },
             ];
 
             for (let log of bootLogs) {
                 const p = document.createElement('p');
                 p.className = 'output-text';
-                
-                if(log.progress) {
+                if (log.progress) {
                     bootScreen.appendChild(p);
                     let bar = "[";
-                    for(let i=0; i<=20; i++) {
+                    for (let i = 0; i <= 20; i++) {
                         bar += (i < 10) ? "#" : ".";
-                        p.textContent = log.text + bar + "] " + (i*5) + "%";
+                        p.textContent = log.text + bar + "] " + (i * 5) + "%";
                         playTypingSound();
                         await new Promise(r => setTimeout(r, 20));
                     }
@@ -677,7 +784,6 @@
             await new Promise(r => setTimeout(r, 400));
             bootScreen.style.display = 'none';
             mainContent.style.display = 'block';
-            
             setTimeout(() => {
                 mainContent.style.opacity = 1;
                 activePrompt.style.display = 'flex';
@@ -685,150 +791,183 @@
             }, 50);
         }
 
-        // Typing wrapper for button clicks
+        // ── typeAndExecute (button click) ──────────────────────────────────────
         async function typeAndExecute(cmdStr) {
             if (isExecuting) return;
             isExecuting = true;
             cliInput.value = '';
             cliInput.disabled = true;
-
             for (let i = 0; i < cmdStr.length; i++) {
                 cliInput.value += cmdStr[i];
                 playTypingSound();
                 await new Promise(r => setTimeout(r, 20 + Math.random() * 30));
             }
-            
             await new Promise(r => setTimeout(r, 150));
             await executeCommand(cmdStr);
         }
 
-        // CLI Input Handlers (Enter, Up, Down, Tab)
+        // ── CLI Input Handlers ─────────────────────────────────────────────────
         cliInput.addEventListener('keydown', async function(e) {
-            if (e.key !== 'Enter' && e.key !== 'Tab' && e.key !== 'ArrowUp' && e.key !== 'ArrowDown') {
-                playTypingSound();
-            }
-            
+            if (!['Enter','Tab','ArrowUp','ArrowDown'].includes(e.key)) playTypingSound();
+
             if (e.key === 'Enter') {
                 e.preventDefault();
                 const cmd = this.value.trim();
-                if (cmd) {
-                    commandHistory.push(cmd);
-                    historyIndex = commandHistory.length;
-                }
+                if (cmd) { commandHistory.push(cmd); historyIndex = commandHistory.length; }
                 if (cmd && !isExecuting) {
                     isExecuting = true;
                     this.disabled = true;
                     await executeCommand(cmd);
                 } else if (!cmd) {
-                    // Empty enter, just new line
                     appendPromptToHistory("");
                     window.scrollTo(0, document.body.scrollHeight);
                 }
-            } 
-            else if (e.key === 'ArrowUp') {
+            } else if (e.key === 'ArrowUp') {
                 e.preventDefault();
-                if (historyIndex > 0) {
-                    historyIndex--;
-                    this.value = commandHistory[historyIndex];
-                }
-            } 
-            else if (e.key === 'ArrowDown') {
+                if (historyIndex > 0) { historyIndex--; this.value = commandHistory[historyIndex]; }
+            } else if (e.key === 'ArrowDown') {
                 e.preventDefault();
-                if (historyIndex < commandHistory.length - 1) {
-                    historyIndex++;
-                    this.value = commandHistory[historyIndex];
-                } else {
-                    historyIndex = commandHistory.length;
-                    this.value = '';
-                }
-            }
-            else if (e.key === 'Tab') {
+                if (historyIndex < commandHistory.length - 1) { historyIndex++; this.value = commandHistory[historyIndex]; }
+                else { historyIndex = commandHistory.length; this.value = ''; }
+            } else if (e.key === 'Tab') {
                 e.preventDefault();
-                const currentVal = this.value.toLowerCase();
-                const matches = availableCommands.filter(c => c.toLowerCase().startsWith(currentVal));
-                
+                const cur = this.value.toLowerCase();
+                const matches = availableCommands.filter(c => c.toLowerCase().startsWith(cur));
                 if (matches.length === 1) {
                     this.value = matches[0];
                 } else if (matches.length > 1) {
-                    appendPromptToHistory(currentVal);
-                    const matchDiv = document.createElement('div');
-                    matchDiv.className = 'cmd-output text-highlight';
-                    matchDiv.textContent = matches.join('    ');
-                    historyDiv.appendChild(matchDiv);
+                    appendPromptToHistory(cur);
+                    const d = document.createElement('div');
+                    d.className = 'cmd-output text-highlight';
+                    d.textContent = matches.join('    ');
+                    historyDiv.appendChild(d);
                     window.scrollTo(0, document.body.scrollHeight);
                 }
             }
         });
 
         function appendPromptToHistory(cmd) {
-            const historyBlock = document.createElement('div');
-            historyBlock.className = 'history-block';
-            historyBlock.style.marginBottom = '0';
-            
-            const promptLine = document.createElement('div');
-            promptLine.className = 'prompt-line';
-            promptLine.innerHTML = `<span class="prompt-user">edi</span><span class="prompt-at">@</span><span class="prompt-host">qa-machine</span><span class="prompt-colon">:</span><span class="prompt-path">~/experience</span><span class="prompt-char">$</span> <span class="prompt-cmd">${cmd}</span>`;
-            historyBlock.appendChild(promptLine);
-            historyDiv.appendChild(historyBlock);
-            return historyBlock;
+            const block = document.createElement('div');
+            block.className = 'history-block';
+            block.style.marginBottom = '0';
+            const pl = document.createElement('div');
+            pl.className = 'prompt-line';
+            pl.innerHTML = `<span class="prompt-user">edi</span><span class="prompt-at">@</span><span class="prompt-host">qa-machine</span><span class="prompt-colon">:</span><span class="prompt-path">~/experience</span><span class="prompt-char">$</span> <span class="prompt-cmd">${cmd}</span>`;
+            block.appendChild(pl);
+            historyDiv.appendChild(block);
+            return block;
         }
 
-        // Core execution logic
+        // ── Core executeCommand ────────────────────────────────────────────────
         async function executeCommand(cmd) {
             playExecuteSound();
-            const historyBlock = appendPromptToHistory(cmd);
-            historyBlock.style.marginBottom = '1rem';
-            
-            // Handle 'echo' command dynamic input
+            const block = appendPromptToHistory(cmd);
+            block.style.marginBottom = '1rem';
+            const out = document.createElement('div');
+            out.className = 'cmd-output';
+
+            const response = commandResponses[cmd.split(' ')[0]] || commandResponses[cmd];
+
             if (cmd.startsWith('echo ')) {
-                const textToEcho = cmd.replace('echo ', '');
-                const out = document.createElement('div');
-                out.className = 'cmd-output';
-                out.innerHTML = `<p>${textToEcho}</p>`;
-                historyBlock.appendChild(out);
-            }
-            else if (cmd === 'print') {
-                const out = document.createElement('div');
-                out.className = 'cmd-output';
+                out.innerHTML = `<p>${cmd.replace('echo ', '')}</p>`;
+                block.appendChild(out);
+
+            } else if (response === 'PRINT_CMD') {
                 out.innerHTML = `<p class="text-dim">Preparing PDF generation...</p>`;
-                historyBlock.appendChild(out);
+                block.appendChild(out);
                 setTimeout(() => window.print(), 800);
-            } 
-            else if (commandResponses[cmd] === 'CLEAR_CMD') {
+
+            } else if (response === 'CLEAR_CMD') {
                 historyDiv.innerHTML = '';
-            }
-            else if (commandResponses[cmd] === 'RUN_TESTS_CMD') {
-                const out = document.createElement('div');
-                out.className = 'cmd-output';
-                historyBlock.appendChild(out);
-                
+
+            } else if (response === 'NEOFETCH_CMD') {
+                out.innerHTML = `
+                <div class="neofetch-wrap">
+                    <pre class="neofetch-art">
+  ██████╗
+ ██╔═══██╗
+ ██║   ██║
+ ██║▄▄ ██║
+ ╚██████╔╝
+  ╚══▀▀═╝ </pre>
+                    <div class="neofetch-info">
+                        <p><span class="text-cyan text-bold">edi</span><span class="text-dim">@</span><span class="text-cyan">qa-machine</span></p>
+                        <p class="text-dim">──────────────────────</p>
+                        <p><span class="neofetch-key">OS:</span>       EdiX OS 3.1.0</p>
+                        <p><span class="neofetch-key">Host:</span>     qa-machine</p>
+                        <p><span class="neofetch-key">Shell:</span>    bash 5.2.0</p>
+                        <p><span class="neofetch-key">Role:</span>     Web Dev & QA Engineer</p>
+                        <p><span class="neofetch-key">Skills:</span>   Playwright, Selenium, Postman</p>
+                        <p><span class="neofetch-key">Projects:</span> 4 repos on GitHub</p>
+                        <p><span class="neofetch-key">GitHub:</span>   <a href="https://github.com/MyNameIsEdi" target="_blank" rel="noopener">MyNameIsEdi</a></p>
+                        <p><span class="neofetch-key">Location:</span> Israel 🇮🇱</p>
+                        <p><span class="neofetch-key">Status:</span>   <span class="text-pass">● Available for opportunities</span></p>
+                        <div class="neofetch-bar">
+                            <span class="neofetch-color" style="background:#000"></span>
+                            <span class="neofetch-color" style="background:#c00"></span>
+                            <span class="neofetch-color" style="background:#0c0"></span>
+                            <span class="neofetch-color" style="background:#cc0"></span>
+                            <span class="neofetch-color" style="background:#00c"></span>
+                            <span class="neofetch-color" style="background:#0cc"></span>
+                            <span class="neofetch-color" style="background:#ccc"></span>
+                            <span class="neofetch-color" style="background:#fff"></span>
+                        </div>
+                    </div>
+                </div>`;
+                block.appendChild(out);
+                playPassSound();
+
+            } else if (response === 'PROJECTS') {
+                const grid = document.createElement('div');
+                grid.className = 'project-grid';
+                grid.style.animation = 'fadeIn 0.3s ease-in';
+
+                projects.forEach(p => {
+                    const card = document.createElement('div');
+                    card.className = 'project-card';
+                    card.innerHTML = `
+                        <a class="proj-name proj-link" href="${p.url}" target="_blank" rel="noopener">${p.name}</a>
+                        <span class="proj-desc">${p.desc}</span>
+                        <div class="proj-tags">${p.tags.map(t => `<span class="proj-tag">${t}</span>`).join('')}</div>`;
+                    grid.appendChild(card);
+                });
+
+                out.innerHTML = `<p class="text-dim"># github.com/MyNameIsEdi — 4 repositories found</p>`;
+                out.appendChild(grid);
+                block.appendChild(out);
+                playPassSound();
+
+            } else if (response === 'RUN_TESTS_CMD') {
+                block.appendChild(out);
                 const tests = [
-                    "Verifying EdiX infrastructure code... [PASS]",
-                    "Validating API response schemas (Postman)... [PASS]",
-                    "Checking SightBit real-time alerting systems... [PASS]",
-                    "Executing full automated Selenium flows... [PASS]"
+                    "Running Playwright E2E suite (Playwright-Portfolio)... [PASS]",
+                    "Validating API response schemas (E-commerce-API-Testing)... [PASS]",
+                    "Executing Python QA automation scripts... [PASS]",
+                    "Checking SightBit real-time alert system... [PASS]",
+                    "Scanning District18 server scripts for errors... [PASS]",
                 ];
-                
-                for(let t of tests) {
+                for (let t of tests) {
                     out.innerHTML += `<p class="text-dim">${t}</p>`;
                     playTypingSound();
                     window.scrollTo(0, document.body.scrollHeight);
                     await new Promise(r => setTimeout(r, 300));
                 }
                 playPassSound();
-                out.innerHTML += `<br><p class="text-pass"><b>System Scan: 4 passed, 0 failed, 4 total</b></p><p class="text-pass"><b>Vulnerabilities: 0 found</b></p>`;
-            }
-            else if (commandResponses[cmd]) {
-                const out = document.createElement('div');
-                out.className = 'cmd-output';
-                out.innerHTML = commandResponses[cmd];
-                historyBlock.appendChild(out);
-            } 
-            else {
-                const out = document.createElement('div');
-                out.className = 'cmd-output';
+                out.innerHTML += `<br><p class="text-pass"><b>Test Suites: 5 passed, 0 failed, 5 total</b></p><p class="text-pass"><b>Vulnerabilities: 0 found ✓</b></p>`;
+
+            } else if (typeof response === 'string' && response.startsWith('OPEN_URL:')) {
+                const url = response.replace('OPEN_URL:', '');
+                out.innerHTML = `<p class="text-dim">Opening <a href="${url}" target="_blank" rel="noopener">${url}</a>...</p>`;
+                block.appendChild(out);
+                setTimeout(() => window.open(url, '_blank', 'noopener'), 400);
+
+            } else if (response) {
+                out.innerHTML = response;
+                block.appendChild(out);
+
+            } else {
                 out.innerHTML = `<p class="text-error">bash: ${cmd}: command not found</p><p class="text-dim">Type 'help' to see available commands.</p>`;
-                historyBlock.appendChild(out);
+                block.appendChild(out);
             }
 
             await new Promise(r => setTimeout(r, 100));
