@@ -8,6 +8,10 @@
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Edi_Mazor-0077B5?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/Edi-M)
 [![Email](https://img.shields.io/badge/Email-edix@outlook.co.il-0078D4?style=for-the-badge&logo=microsoftoutlook)](mailto:edix@outlook.co.il)
+[![Protfolio]([https://img.shields.io/badge/LinkedIn-Edi_Mazor-0077B5?style=for-the-badge&logo=linkedin](https://img.shields.io/badge/GitHub-MyNameIsEdi-181717?style=for-the-badge&logo=github))]([https://linkedin.com/in/Edi-M](https://mynameisedi.github.io/Portfolio/))
+
+
+
 
 </div>
 
