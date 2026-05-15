@@ -39,26 +39,6 @@
       </p>
     </td>
   </tr>
-  <tr>
-    <td width="50%" valign="top">
-      <h3><a href="https://github.com/MyNameIsEdi/Playwright-Portfolio">🎭 Playwright Portfolio</a></h3>
-      <p>Modern browser automation and E2E testing with Playwright. Features multi-browser testing, visual regression, and CI-ready test configurations.</p>
-      <p>
-        <img src="https://img.shields.io/badge/Playwright-45BA4B?style=flat-square&logo=playwright&logoColor=white" />
-        <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white" />
-        <img src="https://img.shields.io/badge/E2E_Testing-6B46C1?style=flat-square" />
-      </p>
-    </td>
-    <td width="50%" valign="top">
-      <h3><a href="https://github.com/MyNameIsEdi/District18">🎮 District18 — FiveM Server</a></h3>
-      <p>Full FiveM GTA V roleplay server — custom scripts, resource management, and server-side Lua logic for an immersive online roleplay community.</p>
-      <p>
-        <img src="https://img.shields.io/badge/Lua-2C2D72?style=flat-square&logo=lua&logoColor=white" />
-        <img src="https://img.shields.io/badge/FiveM-F40552?style=flat-square" />
-        <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" />
-      </p>
-    </td>
-  </tr>
 </table>
 
 ---
