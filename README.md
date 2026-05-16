@@ -30,8 +30,8 @@
       </p>
     </td>
     <td width="50%" valign="top">
-      <h3><a href="https://github.com/MyNameIsEdi/Python">🐍 Python QA Project</a></h3>
-      <p>Python-based QA automation project demonstrating test frameworks, scripting utilities, and quality engineering practices in a real-world context.</p>
+      <h3><a href="https://github.com/MyNameIsEdi/Python">🐍 Python automation fundamentals</a></h3>
+      <p>A Python-based script demonstrating core concepts of test data management, I/O handling, and validation logic for QA automation.</p>
       <p>
         <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white" />
         <img src="https://img.shields.io/badge/pytest-0A9EDC?style=flat-square&logo=pytest&logoColor=white" />
