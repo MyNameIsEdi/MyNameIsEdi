@@ -344,13 +344,13 @@
             border: 1px solid rgba(255,255,255,0.2);
         }
 
-        .text-dim       { color: var(--term-dim); }
-        .text-error     { color: var(--term-error); }
-        .text-warning   { color: var(--term-warning); }
-        .text-pass      { color: var(--term-pass); }
-        .text-highlight { color: var(--term-highlight); }
-        .text-accent    { color: var(--term-accent); }
-        .text-cyan      { color: var(--term-prompt-user); }
+        .text-dim        { color: var(--term-dim); }
+        .text-error      { color: var(--term-error); }
+        .text-warning    { color: var(--term-warning); }
+        .text-pass       { color: var(--term-pass); }
+        .text-highlight  { color: var(--term-highlight); }
+        .text-accent     { color: var(--term-accent); }
+        .text-cyan       { color: var(--term-prompt-user); }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateX(-5px); }
@@ -436,7 +436,6 @@
     <main id="main-content">
         <div class="print-col-left">
 
-            <!-- Profile -->
             <section class="term-panel" aria-labelledby="sys-info">
                 <div class="prompt-line no-print">
                     <span class="prompt-user">edi</span><span class="prompt-at">@</span><span class="prompt-host">qa-machine</span><span class="prompt-colon">:</span><span class="prompt-path">~</span><span class="prompt-char">$</span>
@@ -453,7 +452,6 @@
                 </dl>
             </section>
 
-            <!-- Contact -->
             <section class="term-panel" aria-labelledby="contact">
                 <div class="prompt-line no-print">
                     <span class="prompt-user">edi</span><span class="prompt-at">@</span><span class="prompt-host">qa-machine</span><span class="prompt-colon">:</span><span class="prompt-path">~</span><span class="prompt-char">$</span>
@@ -473,7 +471,6 @@
 
         <div class="print-col-right">
 
-            <!-- Skills -->
             <section class="term-panel" aria-labelledby="skills">
                 <div class="prompt-line no-print">
                     <span class="prompt-user">edi</span><span class="prompt-at">@</span><span class="prompt-host">qa-machine</span><span class="prompt-colon">:</span><span class="prompt-path">~</span><span class="prompt-char">$</span>
@@ -484,33 +481,32 @@
                 <div class="skill-block">
                     <h3>Languages &amp; Frameworks</h3>
                     <ul>
-                        <li>JavaScript, Python, Java</li>
-                        <li>React, Redux, Node.js</li>
-                        <li>HTML5, CSS3</li>
+                        <li>JavaScript, TypeScript, Python</li>
+                        <li>React, Node.js, HTML5/CSS3</li>
+                        <li>Lua Scripting</li>
                     </ul>
                 </div>
                 <div class="skill-block">
                     <h3>QA &amp; Automation</h3>
                     <ul>
-                        <li>Playwright (E2E)</li>
+                        <li>Playwright (E2E + POM)</li>
                         <li>Selenium WebDriver</li>
-                        <li>API Testing (Postman)</li>
+                        <li>API Testing (Postman/Newman)</li>
                         <li>STP / STD Methodologies</li>
-                        <li>Chrome DevTools</li>
+                        <li>CI/CD Integration</li>
                     </ul>
                 </div>
                 <div class="skill-block">
                     <h3>Environments &amp; Tools</h3>
                     <ul>
-                        <li>Git / GitHub, Linux</li>
-                        <li>SQL, Jira</li>
-                        <li>AI Tools Integration</li>
-                        <li>FiveM / Lua scripting</li>
+                        <li>Git / GitHub / Linux</li>
+                        <li>SQL / MongoDB</li>
+                        <li>AI Tools Integration (NotebookLM, Claude)</li>
+                        <li>FiveM Server Stack</li>
                     </ul>
                 </div>
             </section>
 
-            <!-- ASCII Mind Map -->
             <section class="term-panel" aria-labelledby="mind-map">
                 <div class="prompt-line no-print">
                     <span class="prompt-user">edi</span><span class="prompt-at">@</span><span class="prompt-host">qa-machine</span><span class="prompt-colon">:</span><span class="prompt-path">~</span><span class="prompt-char">$</span>
@@ -519,26 +515,25 @@
                 <h2 class="print-only print-h2">System Architecture</h2>
 <pre class="ascii-mindmap">
 <span class="c-node">[DEVELOPMENT]</span> <span class="c-line">════════════════════╗         ╔════════════════</span> <span class="c-node">[QA &amp; AUTOMATION]</span>
-<span class="c-line">├─</span> JS / Python / Java              <span class="c-line">║         ║</span>                  <span class="c-line">├─</span> Playwright (E2E)
-<span class="c-line">├─</span> React / Node.js                  <span class="c-line">║         ║</span>                  <span class="c-line">├─</span> Selenium WebDriver
-<span class="c-line">└─</span> HTML5 / CSS3                     <span class="c-line">║         ║</span>                  <span class="c-line">└─</span> API (Postman)
+<span class="c-line">├─</span> JS / Python / TS                <span class="c-line">║         ║</span>                 <span class="c-line">├─</span> Playwright (E2E)
+<span class="c-line">├─</span> React / Node.js                  <span class="c-line">║         ║</span>                 <span class="c-line">├─</span> Selenium WebDriver
+<span class="c-line">└─</span> HTML5 / CSS3                     <span class="c-line">║         ║</span>                 <span class="c-line">└─</span> API (Postman)
                              <span class="c-line">╔══╩═════════╩══╗</span>
                              <span class="c-line">║  CORE SYSTEM  ║</span>
                              <span class="c-line">╚══╦═════════╦══╝</span>
 <span class="c-node">[TOOLS &amp; ENV]</span> <span class="c-line">════════════════════╝         ╚════════════════</span> <span class="c-node">[AI &amp; OPS]</span>
-<span class="c-line">├─</span> Git / Linux / SQL                                             <span class="c-line">├─</span> AI Tools Integration
-<span class="c-line">├─</span> Jira / DevTools                                               <span class="c-line">├─</span> Project Management
-<span class="c-line">└─</span> FiveM / Lua                                                   <span class="c-line">└─</span> Creative Problem Solving
+<span class="c-line">├─</span> Git / Linux / SQL                                           <span class="c-line">├─</span> AI Tools Integration
+<span class="c-line">├─</span> CI/CD / DevTools                                            <span class="c-line">├─</span> Project Management
+<span class="c-line">└─</span> FiveM / Lua                                                 <span class="c-line">└─</span> Creative Problem Solving
 </pre>
             </section>
 
-            <!-- Experience / Projects — Interactive -->
             <section class="term-panel" aria-labelledby="projects">
                 <div class="prompt-line no-print">
                     <span class="prompt-user">edi</span><span class="prompt-at">@</span><span class="prompt-host">qa-machine</span><span class="prompt-colon">:</span><span class="prompt-path">~/experience</span><span class="prompt-char">$</span>
                     <span class="prompt-cmd">ls -x  <span class="text-dim">(Hint: Use Tab, ↑/↓ arrows, or click a command)</span></span>
                 </div>
-                <h2 class="print-only print-h2">Professional Experience</h2>
+                <h2 class="print-only print-h2">Professional Experience &amp; Projects</h2>
 
                 <div class="cmd-list no-print" id="clickable-commands">
                     <button type="button" onclick="typeAndExecute('./show_projects.sh')">./show_projects.sh <span class="text-dim">(GitHub Projects)</span></button>
@@ -551,7 +546,6 @@
                     <button type="button" onclick="typeAndExecute('help')">help</button>
                 </div>
 
-                <!-- Print-only experience content -->
                 <div class="print-only">
                     <div class="print-project-item">
                         <h3>EdiX — Web Development &amp; Web Applications (2023 – Present)</h3>
@@ -568,18 +562,14 @@
                         </ul>
                     </div>
                     <div class="print-project-item">
-                        <h3>Military Service</h3>
-                        <ul>
-                            <li>Combat Support — Armored Corps. Honorably discharged, rank of Staff Sergeant.</li>
-                        </ul>
-                    </div>
-                    <div class="print-project-item">
                         <h3>GitHub Projects</h3>
                         <ul>
-                            <li><strong>E-commerce API Testing</strong> — Postman-based end-to-end API test suite.</li>
-                            <li><strong>Python QA Project</strong> — Python automation and QA scripting.</li>
-                            <li><strong>Playwright Portfolio</strong> — Modern E2E browser automation with Playwright.</li>
-                            <li><strong>District18</strong> — FiveM GTA V roleplay server (Lua, custom scripts).</li>
+                            <li><strong>playwright-typescript-e2e</strong> — Production-grade Playwright & TypeScript automation framework (POM, CI/CD).</li>
+                            <li><strong>gezem-omer-muni</strong> — Custom web widget for the Local Council of Omer (מועצה מקומית עומר) for accurate garbage collection data.</li>
+                            <li><strong>python-automation-fundamentals</strong> — Python scripting for test data management and validation.</li>
+                            <li><strong>E-commerce-API-Testing</strong> — Postman-based end-to-end API test suite validating OpenAPI 3.1 specs.</li>
+                            <li><strong>Municipal-OS (all-in-one)</strong> — The Operating System for the Modern Local Authority (Private Repository).</li>
+                            <li><strong>District18</strong> — Production-grade FiveM server stack (Lua, custom scripts).</li>
                         </ul>
                     </div>
                 </div>
@@ -670,18 +660,18 @@
                 </ul>`,
             'help': `<p>Available commands:</p>
                 <ul>
-                    <li><span class="text-cyan">./show_projects.sh</span>       — Display GitHub projects</li>
-                    <li><span class="text-cyan">./run_edix_company.sh</span>    — EdiX experience</li>
-                    <li><span class="text-cyan">./run_sightbit_qa.sh</span>     — SightBit QA experience</li>
-                    <li><span class="text-cyan">./run_military_service.sh</span>— Military service</li>
-                    <li><span class="text-cyan">run_tests</span>               — Full system scan</li>
-                    <li><span class="text-cyan">neofetch</span>                — System info</li>
-                    <li><span class="text-cyan">github</span>                  — Open GitHub profile</li>
-                    <li><span class="text-cyan">linkedin</span>                — Open LinkedIn profile</li>
-                    <li><span class="text-cyan">whoami</span>                  — Current user info</li>
-                    <li><span class="text-cyan">date</span>                    — System date</li>
-                    <li><span class="text-cyan">clear</span>                   — Clear terminal</li>
-                    <li><span class="text-cyan">print</span>                   — Export resume to PDF</li>
+                    <li><span class="text-cyan">./show_projects.sh</span>        — Display GitHub projects</li>
+                    <li><span class="text-cyan">./run_edix_company.sh</span>     — EdiX experience</li>
+                    <li><span class="text-cyan">./run_sightbit_qa.sh</span>      — SightBit QA experience</li>
+                    <li><span class="text-cyan">./run_military_service.sh</span> — Military service</li>
+                    <li><span class="text-cyan">run_tests</span>                 — Full system scan</li>
+                    <li><span class="text-cyan">neofetch</span>                  — System info</li>
+                    <li><span class="text-cyan">github</span>                    — Open GitHub profile</li>
+                    <li><span class="text-cyan">linkedin</span>                  — Open LinkedIn profile</li>
+                    <li><span class="text-cyan">whoami</span>                    — Current user info</li>
+                    <li><span class="text-cyan">date</span>                      — System date</li>
+                    <li><span class="text-cyan">clear</span>                     — Clear terminal</li>
+                    <li><span class="text-cyan">print</span>                     — Export resume to PDF</li>
                 </ul>`,
             'whoami': `<p><span class="text-highlight">edi</span> — Edi Mazor<br>
                 Web Developer &amp; QA Automation Engineer<br>
@@ -698,28 +688,40 @@
 
         const projects = [
             {
-                name: 'E-commerce-API-Testing',
-                url: 'https://github.com/MyNameIsEdi/E-commerce-API-Testing',
-                desc: 'End-to-end API test suite for an e-commerce platform — auth, products, cart, orders.',
-                tags: ['Postman', 'REST API', 'JSON Schema', 'QA']
+                name: 'playwright-typescript-e2e',
+                url: 'https://github.com/MyNameIsEdi/playwright-typescript-e2e',
+                desc: 'Production-grade Playwright & TypeScript automation framework (POM, CI/CD).',
+                tags: ['TypeScript', 'Playwright', 'E2E', 'CI/CD']
             },
             {
-                name: 'Python QA Project',
-                url: 'https://github.com/MyNameIsEdi/Python',
-                desc: 'Python-based QA automation — test frameworks, scripting utilities, and real-world QA practices.',
+                name: 'gezem-omer-muni',
+                url: 'https://github.com/MyNameIsEdi/gezem-omer-muni',
+                desc: 'Custom web widget for the Local Council of Omer (מועצה מקומית עומר) for garbage collection data.',
+                tags: ['HTML', 'Web Dev', 'Frontend']
+            },
+            {
+                name: 'python-automation-fundamentals',
+                url: 'https://github.com/MyNameIsEdi/python-automation-fundamentals',
+                desc: 'Python-based script demonstrating core concepts of test data management and validation.',
                 tags: ['Python', 'pytest', 'Automation']
             },
             {
-                name: 'Playwright-Portfolio',
-                url: 'https://github.com/MyNameIsEdi/Playwright-Portfolio',
-                desc: 'Modern browser automation and E2E testing — multi-browser, visual regression, CI-ready.',
-                tags: ['Playwright', 'TypeScript', 'E2E', 'CI/CD']
+                name: 'E-commerce-API-Testing',
+                url: 'https://github.com/MyNameIsEdi/E-commerce-API-Testing',
+                desc: 'Automated Postman API test suite validating an OpenAPI 3.1 spec with E2E workflows.',
+                tags: ['Postman', 'REST API', 'QA']
+            },
+            {
+                name: 'all-in-one (Municipal-OS)',
+                url: 'https://github.com/MyNameIsEdi',
+                desc: 'The Operating System for the Modern Local Authority. [Private Repository]',
+                tags: ['TypeScript', 'System', 'Private']
             },
             {
                 name: 'District18',
-                url: 'https://github.com/MyNameIsEdi/District18',
-                desc: 'Full FiveM GTA V roleplay server — custom Lua scripts, resource management, server-side logic.',
-                tags: ['Lua', 'FiveM', 'JavaScript', 'Game Dev']
+                url: 'https://github.com/MyNameIsEdi',
+                desc: 'Production-grade FiveM server stack and deployment artifacts. [Private Repository]',
+                tags: ['Lua', 'FiveM', 'Private']
             }
         ];
 
@@ -893,15 +895,15 @@
                     <div class="neofetch-info">
                         <p><span class="text-cyan text-bold">edi</span><span class="text-dim">@</span><span class="text-cyan">qa-machine</span></p>
                         <p class="text-dim">──────────────────────</p>
-                        <p><span class="neofetch-key">OS:</span>       EdiX OS 3.1.0</p>
-                        <p><span class="neofetch-key">Host:</span>     qa-machine</p>
-                        <p><span class="neofetch-key">Shell:</span>    bash 5.2.0</p>
-                        <p><span class="neofetch-key">Role:</span>     Web Dev & QA Engineer</p>
-                        <p><span class="neofetch-key">Skills:</span>   Playwright, Selenium, Postman</p>
-                        <p><span class="neofetch-key">Projects:</span> 4 repos on GitHub</p>
-                        <p><span class="neofetch-key">GitHub:</span>   <a href="https://github.com/MyNameIsEdi" target="_blank" rel="noopener">MyNameIsEdi</a></p>
-                        <p><span class="neofetch-key">Location:</span> Israel 🇮🇱</p>
-                        <p><span class="neofetch-key">Status:</span>   <span class="text-pass">● Available for opportunities</span></p>
+                        <p><span class="neofetch-key">OS:</span>        EdiX OS 3.1.0</p>
+                        <p><span class="neofetch-key">Host:</span>      qa-machine</p>
+                        <p><span class="neofetch-key">Shell:</span>     bash 5.2.0</p>
+                        <p><span class="neofetch-key">Role:</span>      Web Dev & QA Engineer</p>
+                        <p><span class="neofetch-key">Skills:</span>    Playwright, Selenium, Postman</p>
+                        <p><span class="neofetch-key">Projects:</span>  6 repos on GitHub</p>
+                        <p><span class="neofetch-key">GitHub:</span>    <a href="https://github.com/MyNameIsEdi" target="_blank" rel="noopener">MyNameIsEdi</a></p>
+                        <p><span class="neofetch-key">Location:</span>  Israel 🇮🇱</p>
+                        <p><span class="neofetch-key">Status:</span>    <span class="text-pass">● Available for opportunities</span></p>
                         <div class="neofetch-bar">
                             <span class="neofetch-color" style="background:#000"></span>
                             <span class="neofetch-color" style="background:#c00"></span>
@@ -932,7 +934,7 @@
                     grid.appendChild(card);
                 });
 
-                out.innerHTML = `<p class="text-dim"># github.com/MyNameIsEdi — 4 repositories found</p>`;
+                out.innerHTML = `<p class="text-dim"># github.com/MyNameIsEdi — 6 repositories found</p>`;
                 out.appendChild(grid);
                 block.appendChild(out);
                 playPassSound();
@@ -940,11 +942,12 @@
             } else if (response === 'RUN_TESTS_CMD') {
                 block.appendChild(out);
                 const tests = [
-                    "Running Playwright E2E suite (Playwright-Portfolio)... [PASS]",
-                    "Validating API response schemas (E-commerce-API-Testing)... [PASS]",
-                    "Executing Python QA automation scripts... [PASS]",
-                    "Checking SightBit real-time alert system... [PASS]",
-                    "Scanning District18 server scripts for errors... [PASS]",
+                    "Running Playwright E2E suite (playwright-typescript-e2e)... [PASS]",
+                    "Validating OpenAPI schemas (E-commerce-API-Testing)... [PASS]",
+                    "Executing Python QA data pipelines... [PASS]",
+                    "Deploying Local Council of Omer widget... [PASS]",
+                    "Mounting Municipal-OS (all-in-one) core modules... [PASS]",
+                    "Scanning District18 server scripts for vulnerabilities... [PASS]",
                 ];
                 for (let t of tests) {
                     out.innerHTML += `<p class="text-dim">${t}</p>`;
@@ -953,7 +956,7 @@
                     await new Promise(r => setTimeout(r, 300));
                 }
                 playPassSound();
-                out.innerHTML += `<br><p class="text-pass"><b>Test Suites: 5 passed, 0 failed, 5 total</b></p><p class="text-pass"><b>Vulnerabilities: 0 found ✓</b></p>`;
+                out.innerHTML += `<br><p class="text-pass"><b>Test Suites: 6 passed, 0 failed, 6 total</b></p><p class="text-pass"><b>Vulnerabilities: 0 found ✓</b></p>`;
 
             } else if (typeof response === 'string' && response.startsWith('OPEN_URL:')) {
                 const url = response.replace('OPEN_URL:', '');
