@@ -4,7 +4,7 @@
 
 ### Web Developer & QA Automation Engineer
 
-*Building robust systems — and breaking them to ensure maximum quality.*
+*Building robust systems - and breaking them to ensure maximum quality.*
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Edi_Mazor-0077B5?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/Edi-M)
 [![Email](https://img.shields.io/badge/Email-edix@outlook.co.il-0078D4?style=for-the-badge&logo=microsoftoutlook)](mailto:edix@outlook.co.il)
