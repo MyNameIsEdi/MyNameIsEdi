@@ -8,7 +8,6 @@
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Edi_Mazor-0077B5?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/Edi-M)
 [![Email](https://img.shields.io/badge/Email-edix@outlook.co.il-0078D4?style=for-the-badge&logo=microsoftoutlook)](mailto:edix@outlook.co.il)
-[![Portfolio](https://img.shields.io/badge/Portfolio-My_Work-black?style=for-the-badge&logo=github)](https://mynameisedi.github.io/MyNameIsEdi/)
 
 
 
