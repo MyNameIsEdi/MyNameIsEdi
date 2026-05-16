@@ -20,12 +20,12 @@
 <table>
   <tr>
     <td width="50%" valign="top">
-      <h3><a href="https://github.com/MyNameIsEdi/E-commerce-API-Testing">🛒 E-commerce API testing</a></h3>
-      <p>A comprehensive, automated Postman API test suite validating an OpenAPI 3.1 spec. Features full E2E workflows, dynamic environment variables, and clean teardown architecture.</p>
+      <h3><a href="https://github.com/MyNameIsEdi/intelligent-testing-toolkit">🤖 Intelligent Testing Toolkit</a></h3>
+      <p>Next-gen QA automation toolkit integrating AI, LLMs (Claude), and autonomous agents for self-healing tests, dynamic data generation, and smart log analysis.</p>
       <p>
-        <img src="https://img.shields.io/badge/Postman-FF6C37?style=flat-square&logo=postman&logoColor=white" />
-        <img src="https://img.shields.io/badge/REST_API-005571?style=flat-square&logo=fastapi&logoColor=white" />
-        <img src="https://img.shields.io/badge/JSON_Schema-000000?style=flat-square&logo=json&logoColor=white" />
+        <img src="https://img.shields.io/badge/AI_Testing-6366F1?style=flat-square" />
+        <img src="https://img.shields.io/badge/Claude_AI-D97757?style=flat-square&logo=anthropic&logoColor=white" />
+        <img src="https://img.shields.io/badge/Playwright-2EAD33?style=flat-square&logo=playwright&logoColor=white" />
       </p>
     </td>
     <td width="50%" valign="top">
@@ -40,12 +40,32 @@
   </tr>
   <tr>
     <td width="50%" valign="top">
+      <h3><a href="https://github.com/MyNameIsEdi/E-commerce-API-Testing">🛒 E-commerce API Testing</a></h3>
+      <p>A comprehensive, automated Postman API test suite validating an OpenAPI 3.1 spec. Features full E2E workflows, dynamic environment variables, and clean teardown architecture.</p>
+      <p>
+        <img src="https://img.shields.io/badge/Postman-FF6C37?style=flat-square&logo=postman&logoColor=white" />
+        <img src="https://img.shields.io/badge/REST_API-005571?style=flat-square&logo=fastapi&logoColor=white" />
+        <img src="https://img.shields.io/badge/JSON_Schema-000000?style=flat-square&logo=json&logoColor=white" />
+      </p>
+    </td>
+    <td width="50%" valign="top">
       <h3><a href="https://github.com/MyNameIsEdi/ecommerce-sql-qa-queries">🗄️ E-commerce SQL & QA Queries</a></h3>
       <p>An advanced SQL schema and query suite simulating backend e-commerce operations, optimized for deep data validation, cascading integrity checks, and QA backend testing.</p>
       <p>
         <img src="https://img.shields.io/badge/PostgreSQL-316192?style=flat-square&logo=postgresql&logoColor=white" />
         <img src="https://img.shields.io/badge/SQL-Data_Testing-4479A1?style=flat-square&logo=mysql&logoColor=white" />
         <img src="https://img.shields.io/badge/QA_Validation-FF4B4B?style=flat-square" />
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <h3><a href="https://github.com/MyNameIsEdi/python-automation-fundamentals">🐍 Python Automation Fundamentals</a></h3>
+      <p>A Python-based script demonstrating core concepts of test data management, I/O handling, and validation logic for QA automation.</p>
+      <p>
+        <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white" />
+        <img src="https://img.shields.io/badge/Scripting-000000?style=flat-square&logo=gnubash&logoColor=white" />
+        <img src="https://img.shields.io/badge/QA_Automation-FF4B4B?style=flat-square" />
       </p>
     </td>
     <td width="50%" valign="top">
