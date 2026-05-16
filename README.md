@@ -39,6 +39,19 @@
       </p>
     </td>
   </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <h3><a href="https://github.com/MyNameIsEdi/playwright-typescript-e2e">🎭 Playwright & TypeScript E2E</a></h3>
+      <p>A production-grade Playwright & TypeScript automation framework demonstrating E2E testing best practices, POM architecture, and CI/CD integration.</p>
+      <p>
+        <img src="https://img.shields.io/badge/Playwright-2EAD33?style=flat-square&logo=playwright&logoColor=white" />
+        <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white" />
+        <img src="https://img.shields.io/badge/E2E_Testing-FF4B4B?style=flat-square" />
+      </p>
+    </td>
+    <td width="50%" valign="top">
+      </td>
+  </tr>
 </table>
 
 ---
