@@ -20,7 +20,7 @@
 <table>
   <tr>
     <td width="50%" valign="top">
-      <h3><a href="https://github.com/MyNameIsEdi/E-commerce-API-Testing" target="_blank" rel="noopener noreferrer">🛒 E-commerce API testing</a></h3>
+      <h3><a href="https://github.com/MyNameIsEdi/E-commerce-API-Testing">🛒 E-commerce API testing</a></h3>
       <p>A comprehensive, automated Postman API test suite validating an OpenAPI 3.1 spec. Features full E2E workflows, dynamic environment variables, and clean teardown architecture.</p>
       <p>
         <img src="https://img.shields.io/badge/Postman-FF6C37?style=flat-square&logo=postman&logoColor=white" />
@@ -29,18 +29,7 @@
       </p>
     </td>
     <td width="50%" valign="top">
-      <h3><a href="https://github.com/MyNameIsEdi/Python" target="_blank" rel="noopener noreferrer">🐍 Python automation fundamentals</a></h3>
-      <p>A Python-based script demonstrating core concepts of test data management, I/O handling, and validation logic for QA automation.</p>
-      <p>
-        <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white" />
-        <img src="https://img.shields.io/badge/pytest-0A9EDC?style=flat-square&logo=pytest&logoColor=white" />
-        <img src="https://img.shields.io/badge/Automation-4CAF50?style=flat-square" />
-      </p>
-    </td>
-  </tr>
-  <tr>
-    <td width="50%" valign="top">
-      <h3><a href="https://github.com/MyNameIsEdi/playwright-typescript-e2e" target="_blank" rel="noopener noreferrer">🎭 Playwright & TypeScript E2E</a></h3>
+      <h3><a href="https://github.com/MyNameIsEdi/playwright-typescript-e2e">🎭 Playwright & TypeScript E2E</a></h3>
       <p>A production-grade Playwright & TypeScript automation framework demonstrating E2E testing best practices, POM architecture, and CI/CD integration.</p>
       <p>
         <img src="https://img.shields.io/badge/Playwright-2EAD33?style=flat-square&logo=playwright&logoColor=white" />
@@ -48,8 +37,19 @@
         <img src="https://img.shields.io/badge/E2E_Testing-FF4B4B?style=flat-square" />
       </p>
     </td>
+  </tr>
+  <tr>
     <td width="50%" valign="top">
-      <h3><a href="https://mynameisedi.github.io/MyNameIsEdi/" target="_blank" rel="noopener noreferrer">🖥️ Interactive Terminal OS</a></h3>
+      <h3><a href="https://github.com/MyNameIsEdi/ecommerce-sql-qa-queries">🗄️ E-commerce SQL & QA Queries</a></h3>
+      <p>An advanced SQL schema and query suite simulating backend e-commerce operations, optimized for deep data validation, cascading integrity checks, and QA backend testing.</p>
+      <p>
+        <img src="https://img.shields.io/badge/PostgreSQL-316192?style=flat-square&logo=postgresql&logoColor=white" />
+        <img src="https://img.shields.io/badge/SQL-Data_Testing-4479A1?style=flat-square&logo=mysql&logoColor=white" />
+        <img src="https://img.shields.io/badge/QA_Validation-FF4B4B?style=flat-square" />
+      </p>
+    </td>
+    <td width="50%" valign="top">
+      <h3><a href="https://mynameisedi.github.io/MyNameIsEdi/">🖥️ Interactive Terminal OS</a></h3>
       <p>An immersive, interactive terminal-themed web portfolio simulating a command-line environment. Features custom CLI commands, boot sequences, audio effects, and retro CRT styling.</p>
       <p>
         <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" />
