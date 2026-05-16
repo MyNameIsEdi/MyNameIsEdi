@@ -21,8 +21,8 @@
 <table>
   <tr>
     <td width="50%" valign="top">
-      <h3><a href="https://github.com/MyNameIsEdi/E-commerce-API-Testing">🛒 E-commerce API Testing</a></h3>
-      <p>End-to-end API test suite for an e-commerce platform. Covers authentication, product management, cart flows, and order processing with full assertions and schema validation.</p>
+      <h3><a href="https://github.com/MyNameIsEdi/E-commerce-API-Testing">🛒 E-commerce API testing</a></h3>
+      <p>A comprehensive, automated Postman API test suite validating an OpenAPI 3.1 spec. Features full E2E workflows, dynamic environment variables, and clean teardown architecture.</p>
       <p>
         <img src="https://img.shields.io/badge/Postman-FF6C37?style=flat-square&logo=postman&logoColor=white" />
         <img src="https://img.shields.io/badge/REST_API-005571?style=flat-square&logo=fastapi&logoColor=white" />
