@@ -20,8 +20,8 @@
 <table>
   <tr>
     <td width="50%" valign="top">
-      <h3><a href="https://mynameisedi.github.io/intelligent-testing-toolkit">🤖 Intelligent Testing Toolkit</a></h3>
-      <p>Next-gen QA automation toolkit integrating AI, LLMs (Claude), and autonomous agents for self-healing tests, dynamic data generation, and smart log analysis.</p>
+      <h3><a href="https://mynameisedi.github.io/intelligent-testing-toolkit">🤖 Open QA</a></h3>
+      <p>Production-ready Playwright + Claude toolkit with a React marketplace UI</p>
       <p>
         <img src="https://img.shields.io/badge/AI_Testing-6366F1?style=flat-square" />
         <img src="https://img.shields.io/badge/Claude_AI-D97757?style=flat-square&logo=anthropic&logoColor=white" />
