@@ -21,7 +21,7 @@
   <tr>
     <td width="50%" valign="top">
       <h3><a href="https://mynameisedi.github.io/open-qa/">🤖 Open QA</a></h3>
-      <p>Production-ready Playwright + Claude toolkit with a React marketplace UI</p>
+      <p>The QA Toolkit AI Is Missing</p>
       <p>
         <img src="https://img.shields.io/badge/AI_Testing-6366F1?style=flat-square" />
         <img src="https://img.shields.io/badge/Claude_AI-D97757?style=flat-square&logo=anthropic&logoColor=white" />
